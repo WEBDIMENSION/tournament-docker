@@ -11,6 +11,8 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/* \
   && a2enmod ssl \
   && a2ensite default-ssl
+# PDO
+RUN docker-php-ext-install pdo_mysql
 # xdebug
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
