@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bd44bc1-bb12-4184-b04d-851c4a627110" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php_apache/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/php_apache/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/htdocs/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/htdocs/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php_apache/php.ini" beforeDir="false" afterPath="$PROJECT_DIR$/php_apache/php.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php_apache/sites-available/.default-ssl.conf.swp" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
