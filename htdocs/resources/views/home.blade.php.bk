@@ -1,0 +1,96 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        @if($cups)
+            <h1>Regsted Cups</h1>
+            <div class="row">
+                @foreach($cups as $cup)
+                    <div class="col-md-4">
+                        <a href="/cup/{{$cup->cup_number}}">
+                            <img class="card-img-top"
+                                 src="http://placehold.jp/888888/ffffff/800x600.png?text={{$cup->cup_name}}"
+                                 alt="{{$cup->cup_name}}">
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title">{{$cup->cup_name}}</h3>
+                            <h4>subtitle</h4>
+                            <p class="card-text">Description</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        @if($cup->events)
+                            <div class="accordion" id="accordion{{$cup->cup_number}}">
+                                @foreach($cup->events as $event)
+                                    <div class="" id="{{$event->event_number}}">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button"
+                                                        {{--                                                    class="btn btn-link mb-2 bg-primary display-5"--}}
+                                                        class="btn btn-link list-group-item list-group-item-action mb-2 bg-primary display-5"
+                                                        data-toggle="collapse" data-target="#{{$event->id}}"
+                                                        aria-expanded="falsek"
+                                                        aria-controls="{{$event->id}}">{{$event->event_name}}</button>
+                                            </div>
+                                            <div id="{{$event->id}}" class="collapse col-md-2"
+                                                 aria-labelledby="{{$event->event_number}}"
+                                                 data-parent="#accordion{{$cup->cup_number}}">
+                                                @if(count($event->getRounds($event->id))>0)
+                                                    <ul>
+                                                    @foreach($event->getRounds($event->id) as $rounds)
+                                                        <li>
+                                                        @if($loop->last)
+                                                            <span>F</span>
+                                                        @elseif($loop->remaining==1)
+                                                            <span>SF</span>
+                                                        @else
+                                                            <span>{{$rounds['round']}}R</span>
+                                                        @endif
+                                                        </li>
+                                                    @endforeach
+                                                    </ul>
+                                                @else
+                                                    No regist
+                                                @endif
+                                            </div>
+                                        </div>
+                                        {{--                                        @foreach($event->tournaments as $tournament)--}}
+
+                                        {{--                                        <div>{{$tournament->round}}R {{$tournament->card_number}}Game</div>--}}
+                                        {{--                                        <p>--}}
+                                        {{--                                            @foreach($tournament->getPlayerName($tournament->player_a_id) as $person)--}}
+                                        {{--                                                   <span> {{$person['name']}}</span>--}}
+                                        {{--                                            @endforeach--}}
+                                        {{--                                            --}}{{--                                                {{$tournament->getPlayerName($tournament->player_b_id)}} </span>--}}
+                                        {{--                                        </p>--}}
+                                        {{--                                        @endforeach--}}
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p>No plan</p>
+        @endif
+        {{--    --}}
+        {{--    <div class="row justify-content-center">--}}
+        {{--        <div class="col-md-8">--}}
+        {{--            <div class="card">--}}
+        {{--                <div class="card-header">Dashboard</div>--}}
+
+        {{--                <div class="card-body">--}}
+        {{--                    @if (session('status'))--}}
+        {{--                        <div class="alert alert-success" role="alert">--}}
+        {{--                            {{ session('status') }}--}}
+        {{--                        </div>--}}
+        {{--                    @endif--}}
+
+        {{--                    You are logged in!--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
+        {{--    </div>--}}
+    </div>
+@endsection

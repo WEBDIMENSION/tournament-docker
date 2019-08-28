@@ -1,0 +1,196 @@
+
+> node@0.0.0 start /var/www/html/laravel/node
+> node ./bin/www
+
+[0mGET / [32m200 [0m613.456 ms - 170[0m
+[0mGET / [36m304 [0m55.238 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m34.659 ms - -[0m
+[0mGET / [36m304 [0m29.779 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m27.585 ms - -[0m
+[0mGET / [36m304 [0m27.215 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m11.012 ms - -[0m
+[0mGET / [36m304 [0m23.048 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m4.573 ms - -[0m
+[0mGET / [36m304 [0m23.148 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m48.060 ms - -[0m
+[0mGET /test/ [33m404 [0m30.887 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.781 ms - -[0m
+[0mGET /test [33m404 [0m39.902 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m2.279 ms - -[0m
+[0mGET /test/ [33m404 [0m26.199 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m6.296 ms - -[0m
+[0mGET /test [33m404 [0m105.915 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m28.431 ms - -[0m
+[0mGET // [33m404 [0m32.159 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.483 ms - -[0m
+[0mGET // [33m404 [0m34.972 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.700 ms - -[0m
+[0mGET /test/ [33m404 [0m22.433 ms - 1082[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.618 ms - -[0m
+[0mGET / [36m304 [0m21.388 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.633 ms - -[0m
+[0mGET / [36m304 [0m17.644 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m0.899 ms - -[0m
+[0mGET / [36m304 [0m24.081 ms - -[0m
+[0mGET /stylesheets/style.css [36m304 [0m1.108 ms - -[0m
+
+Usage: npm <command>
+
+where <command> is one of:
+    access, adduser, audit, bin, bugs, c, cache, ci, cit,
+    completion, config, create, ddp, dedupe, deprecate,
+    dist-tag, docs, doctor, edit, explore, get, help,
+    help-search, hook, i, init, install, install-test, it, link,
+    list, ln, login, logout, ls, outdated, owner, pack, ping,
+    prefix, profile, prune, publish, rb, rebuild, repo, restart,
+    root, run, run-script, s, se, search, set, shrinkwrap, star,
+    stars, start, stop, t, team, test, token, tst, un,
+    uninstall, unpublish, unstar, up, update, v, version, view,
+    whoami
+
+npm <command> -h  quick help on <command>
+npm -l            display full usage info
+npm help <term>   search for help on <term>
+npm help npm      involved overview
+
+Specify configs in the ini-formatted file:
+    /home/vagrant/.npmrc
+or on the command line via: npm <command> --key value
+Config info can be viewed via: npm help config
+
+npm@6.4.1 /usr/lib/node_modules/npm
+
+
+Usage: npm <command>
+
+where <command> is one of:
+    access, adduser, audit, bin, bugs, c, cache, ci, cit,
+    completion, config, create, ddp, dedupe, deprecate,
+    dist-tag, docs, doctor, edit, explore, get, help,
+    help-search, hook, i, init, install, install-test, it, link,
+    list, ln, login, logout, ls, outdated, owner, pack, ping,
+    prefix, profile, prune, publish, rb, rebuild, repo, restart,
+    root, run, run-script, s, se, search, set, shrinkwrap, star,
+    stars, start, stop, t, team, test, token, tst, un,
+    uninstall, unpublish, unstar, up, update, v, version, view,
+    whoami
+
+npm <command> -h  quick help on <command>
+npm -l            display full usage info
+npm help <term>   search for help on <term>
+npm help npm      involved overview
+
+Specify configs in the ini-formatted file:
+    /home/vagrant/.npmrc
+or on the command line via: npm <command> --key value
+Config info can be viewed via: npm help config
+
+npm@6.4.1 /usr/lib/node_modules/npm
+
+
+Usage: npm <command>
+
+where <command> is one of:
+    access, adduser, audit, bin, bugs, c, cache, ci, cit,
+    completion, config, create, ddp, dedupe, deprecate,
+    dist-tag, docs, doctor, edit, explore, get, help,
+    help-search, hook, i, init, install, install-test, it, link,
+    list, ln, login, logout, ls, outdated, owner, pack, ping,
+    prefix, profile, prune, publish, rb, rebuild, repo, restart,
+    root, run, run-script, s, se, search, set, shrinkwrap, star,
+    stars, start, stop, t, team, test, token, tst, un,
+    uninstall, unpublish, unstar, up, update, v, version, view,
+    whoami
+
+npm <command> -h  quick help on <command>
+npm -l            display full usage info
+npm help <term>   search for help on <term>
+npm help npm      involved overview
+
+Specify configs in the ini-formatted file:
+    /root/.npmrc
+or on the command line via: npm <command> --key value
+Config info can be viewed via: npm help config
+
+npm@6.4.1 /usr/lib/node_modules/npm
+
+npm ERR! missing script: nodemon
+npm ERR! 
+npm ERR! Did you mean this?
+npm ERR!     demon
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/vagrant/.npm/_logs/2019-04-24T02_48_13_428Z-debug.log
+
+Usage: npm <command>
+
+where <command> is one of:
+    access, adduser, audit, bin, bugs, c, cache, ci, cit,
+    completion, config, create, ddp, dedupe, deprecate,
+    dist-tag, docs, doctor, edit, explore, get, help,
+    help-search, hook, i, init, install, install-test, it, link,
+    list, ln, login, logout, ls, outdated, owner, pack, ping,
+    prefix, profile, prune, publish, rb, rebuild, repo, restart,
+    root, run, run-script, s, se, search, set, shrinkwrap, star,
+    stars, start, stop, t, team, test, token, tst, un,
+    uninstall, unpublish, unstar, up, update, v, version, view,
+    whoami
+
+npm <command> -h  quick help on <command>
+npm -l            display full usage info
+npm help <term>   search for help on <term>
+npm help npm      involved overview
+
+Specify configs in the ini-formatted file:
+    /home/vagrant/.npmrc
+or on the command line via: npm <command> --key value
+Config info can be viewed via: npm help config
+
+npm@6.4.1 /usr/lib/node_modules/npm
+
+
+> node@0.0.0 demon /var/www/html/laravel/node
+> nodemon -L ./bin/www -watch packages/**/**/**/* packages/**/**/*
+
+[33m[nodemon] 1.18.11[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node ./bin/www -watch packages/**/**/**/* packages/**/**/*`[39m
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! node@0.0.0 demon: `nodemon -L ./bin/www -watch packages/**/**/**/* packages/**/**/*`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the node@0.0.0 demon script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/vagrant/.npm/_logs/2019-04-24T02_56_03_118Z-debug.log
+
+> node@0.0.0 demon /var/www/html/laravel/node
+> nodemon -L ./bin/www -watch packages/**/**/**/* packages/**/**/*
+
+[33m[nodemon] 1.18.11[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node ./bin/www -watch packages/**/**/**/* packages/**/**/*`[39m
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: EBADF: bad file descriptor, read
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! node@0.0.0 demon: `nodemon -L ./bin/www -watch packages/**/**/**/* packages/**/**/*`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the node@0.0.0 demon script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/vagrant/.npm/_logs/2019-04-24T02_56_34_605Z-debug.log
