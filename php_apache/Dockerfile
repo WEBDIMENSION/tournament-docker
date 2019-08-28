@@ -2,6 +2,7 @@ FROM php:7.2-apache
 COPY ./php.ini /usr/local/etc/php/
 COPY ./sites-available/000-default.conf  /etc/apache2/sites-available/
 COPY ./sites-available/default-ssl.conf  /etc/apache2/sites-available/
+COPY ./mods-enabled/rewrite.load  /etc/apache2/mods-enabled/
 # SSL
 RUN apt-get update && apt-get install -y \
   libssl-dev \
