@@ -1,23 +1,34 @@
-<template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <template>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card card-default">
+                        <div class="card-header">Example Component</div>
 
-                    <div class="card-body">
-                        I'm an example component.
+                        <div class="card-body">
+                            I'm an example component. <br>
+                          <span class="test">{{ test }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</template>
+    </template>
 
-<script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+    <style scoped>
+    .test {
+        color: red;
     }
-</script>
+    </style>
+
+    <script>
+    export default {
+        props: {
+          test: String,
+        },
+
+        mounted() {
+            console.log('ExampleComponent mounted.')
+        },
+    }
+    </script>
