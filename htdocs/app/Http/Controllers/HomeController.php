@@ -7,8 +7,8 @@ use App\Event;
 use App\Player;
 use App\Tournament;
 use Illuminate\Http\Request;
-use Redis;
-
+//use Redis;
+use Illuminate\Support\Facades\Redis;
 //use Emitter;
 class HomeController extends Controller
 {
@@ -48,9 +48,9 @@ class HomeController extends Controller
 	$tournament->winner = $winner;
 	$tournament->save();
 
-
 	$redis = new Redis();
-	$redis->connect('127.0.0.1', '6379');
+	$redis = Redis::connection();
+//	$redis->connect('redis', '6379');
 	$emitter = new \SocketIO\Emitter($redis);
 	$winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();;
 	$data = array(

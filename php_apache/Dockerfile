@@ -6,6 +6,9 @@ COPY ./mods-enabled/rewrite.load  /etc/apache2/mods-enabled/
 # SSL
 RUN apt-get update && apt-get install -y \
   libssl-dev \
+  git \
+  unzip \
+  vim \
   openssl \
   ssl-cert \
   && apt-get clean \
@@ -14,6 +17,10 @@ RUN apt-get update && apt-get install -y \
   && a2ensite default-ssl
 # PDO
 RUN docker-php-ext-install pdo_mysql
+# redis
+RUN docker-php-source extract 
+RUN git clone -b 4.1.1 --depth 1 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
+    docker-php-ext-install redis
 # xdebug
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
