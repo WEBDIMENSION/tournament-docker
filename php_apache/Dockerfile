@@ -4,6 +4,7 @@ COPY ./sites-available/000-default.conf  /etc/apache2/sites-available/
 COPY ./sites-available/default-ssl.conf  /etc/apache2/sites-available/
 COPY ./mods-enabled/rewrite.load  /etc/apache2/mods-enabled/
 # SSL
+COPY ./ssl  /etc/apache2/ssl/
 RUN apt-get update && apt-get install -y \
   libssl-dev \
   git \
@@ -35,5 +36,3 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-# Git
-RUN apt-get -y install git

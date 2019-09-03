@@ -14,8 +14,11 @@ services:
     links:
       - redis
   mysql:
-    build: ./mysql/
+    build:
+      context: ./mysql
     volumes:
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/data:/tmp/mysql
       - ./mysql/db:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=root
@@ -32,5 +35,19 @@ services:
     ports:
       - "6379:6379"
     volumes:
-      - ./redis:/data
-    command: redis-server --appendonly yes
+      - ./redis/data:/data
+    command: redis-server
+  node:
+    image: node:10
+    volumes:
+      - ./htdocs/node:/node
+    working_dir: /node
+    command:  "npm install"
+    command:  "npm start"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - redis
+    links:
+      - redis

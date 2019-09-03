@@ -3,7 +3,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3000;
 var redis = require('socket.io-redis');
-io.adapter(redis({ host: 'localhost', port: 6379 }));
+io.adapter(redis({ host: 'redis', port: 6379 }));
 
 app.get(`/`, (req, res) => {
   res.sendFile(__dirname + '/index.html');
