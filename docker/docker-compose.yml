@@ -9,7 +9,6 @@ services:
       - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
     volumes:
       - ../${APP_NAME}:/var/www/html
-    working_dir: /var/www/html
     depends_on:
       - mysql
       - redis
@@ -22,6 +21,7 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
       - ./mysql/data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/logs:/var/log/mysql
     environment:
        MYSQL_DATABASE: ${DB_DATABASE}
        MYSQL_USER: ${DB_USERNAME}
