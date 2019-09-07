@@ -1,21 +1,9 @@
-FROM php:7.2-apache
-COPY ./php_apache/php.ini /usr/local/etc/php/
-COPY ./php_apache/sites-available/000-default.conf  /etc/apache2/sites-available/
-COPY ./php_apache/sites-available/default-ssl.conf  /etc/apache2/sites-available/
-COPY ./php_apache/mods-enabled/rewrite.load  /etc/apache2/mods-enabled/
-# SSL
-COPY ./certs  /etc/apache2/certs/
+FROM php:7.2.8-fpm
 RUN apt-get update && apt-get install -y \
   libssl-dev \
   git \
   unzip \
-  vim \
-  openssl \
-  ssl-cert \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* \
-  && a2enmod ssl \
-  && a2ensite default-ssl
+  vim
 RUN apt-get -y update
 RUN apt-get install -y \
     curl \

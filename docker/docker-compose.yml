@@ -23,6 +23,7 @@ services:
     container_name: php
     volumes:
       - ../Laravel:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mysql
   nginx:
@@ -56,14 +57,14 @@ services:
        MYSQL_PASSWORD: ${DB_PASSWORD}
        MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - ${DB_PORT}:3306
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     command: "--innodb_use_native_aio=0"
-  smtp:
-    image: schickling/mailcatcher
-    ports:
-      - ${MAIL_ADMIN_PORT}:${MAIL_ADMIN_PORT}
-      - ${MAIL_PORT}:${MAIL_PORT}
+#  smtp:
+#    image: schickling/mailcatcher
+#    ports:
+#      - ${MAIL_ADMIN_PORT}:${MAIL_ADMIN_PORT}
+#      - ${MAIL_PORT}:${MAIL_PORT}
   redis:
     image: redis:latest
     user: "999:redis"
