@@ -1,19 +1,47 @@
 version: '3'
 services:
-  php_apache:
-    build:
-      context: .
-      dockerfile: ./php_apache/Dockerfile
-    ports:
-      - ${APP_HTTP_PORT}:${APP_HTTP_PORT}
-      - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
+#  php_apache:
+#    build:
+#      context: .
+#      dockerfile: ./php_apache/Dockerfile
+##    ports:
+##      - ${APP_HTTP_PORT}:${APP_HTTP_PORT}
+##      - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
+#    environment:
+#      - VIRTUAL_HOST=tournament.local
+#      - VIRTUAL_PORT=443
+#      - CERT_NAME=server
+#    volumes:
+#      - ../${APP_NAME}:/var/www/html
+#    depends_on:
+#      - mysql
+#      - redis
+#    links:
+#      - redis
+  php:
+    build: ./php
+    container_name: php
     volumes:
-      - ../${APP_NAME}:/var/www/html
+      - ../Laravel:/var/www/html
     depends_on:
       - mysql
-      - redis
-    links:
-      - redis
+  nginx:
+    image: nginx
+    container_name: nginx
+    environment:
+        - VIRTUAL_HOST=tournament.local
+        - CERT_NAME=server
+        #    ports
+#      - ${APP_HTTP_PORT}:${APP_HTTP_PORT}
+#      - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
+    volumes:
+      - ./php/logs:/var/logs/nginx
+      - ../Laravel:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+#      - ./certs/server.crt:/etc/nginx/server.crt
+#      - ./certs/server.key:/etc/nginx/server.key
+    depends_on:
+      - php
   mysql:
     image: mysql:5.7
     user: "1000:50"
@@ -38,17 +66,17 @@ services:
       - ${MAIL_PORT}:${MAIL_PORT}
   redis:
     image: redis:latest
+    user: "999:redis"
     ports:
       - ${REDIS_PORT}:${REDIS_PORT}
     volumes:
       - ./redis/data:/data
-    command: redis-server
+    command: "redis-server --appendonly yes"
   node:
     image: node:10
     volumes:
       - ../${APP_NAME}/node:/node
-      - ./ssl:/ssl
-      - ../${APP_NAME}:/var/www/html
+      - ./certs:/ssl
     working_dir: /node
     command:  "npm install"
     command:  "npm start"
@@ -59,3 +87,7 @@ services:
       - redis
     links:
       - redis
+networks:
+  default:
+    external:
+      name: shared
