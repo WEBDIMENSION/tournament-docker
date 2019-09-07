@@ -23,7 +23,7 @@ services:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d
       - ./mysql/logs:/var/log/mysql
-      - ./mysql/sql:/sql
+#      - ./mysql/sql:/sql
     environment:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
@@ -32,8 +32,8 @@ services:
     ports:
       - 3306:3306
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --innodb_use_native_aio=0
-    working_dir: /sql
-    command: "sh ./tournament.sh"
+#    working_dir: /sql
+#    command: "sh ./tournament.sh"
   smtp:
     image: schickling/mailcatcher
     container_name: smtp
