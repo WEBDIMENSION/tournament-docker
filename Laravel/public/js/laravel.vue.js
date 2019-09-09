@@ -2013,7 +2013,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       from_api_message: '',
       messages: [],
       show: false,
-      socket: io('tournament.local:3000')
+      socket: io("https://tournament.local" + ':' + "3000")
     };
   },
   mounted: function mounted() {
@@ -52714,7 +52714,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/js/laravel.vue.js */"./resources/js/laravel.vue.js");
+module.exports = __webpack_require__(/*! /Users/garaccii/CloudStation/workspace/docker/projects/tournament/Laravel/resources/js/laravel.vue.js */"./resources/js/laravel.vue.js");
 
 
 /***/ }),

@@ -42,7 +42,7 @@
       from_api_message: '',
       messages: [],
       show: false,
-      socket: io('tournament.local:3000')
+      socket: io(process.env.MIX_NODE_URL + ':' + process.env.MIX_NODE_PORT),
     }),
     mounted: function () {
       this.socket.on('LaravelGetScoreMess', (data) => {
@@ -56,6 +56,7 @@
         this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
         console.log(data.name);
         console.log(data.message);
+
         // this.from_api_name = data.name,
         //   this.from_api_message = data.message,
         this.show = true;

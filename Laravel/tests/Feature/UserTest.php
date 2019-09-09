@@ -14,6 +14,7 @@ class MyTest extends TestCase
 */
 public function testExample()
 {
+ $this->assertTrue(true);
 $user = new \App\User;
 $user->name = "山田";
 $user->email = "yamada@test.com";

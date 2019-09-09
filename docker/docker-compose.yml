@@ -26,7 +26,11 @@ services:
       - ./php/php.ini:/usr/local/etc/php/php.ini
     external_links:
       - smtp
-      - mysql5.7:mysql5.7
+#      - mysql5.7:mysql5.7
+    depends_on:
+      - mysql
+    links:
+      - mysql:mysql
 #    environment:
 #      MYSQL_DATABASE: ${DB_DATABASE}
 #      MYSQL_USER: ${DB_USERNAME}
@@ -46,25 +50,28 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
 #      - ./certs/server.crt:/etc/nginx/server.crt
 #      - ./certs/server.key:/etc/nginx/server.key
+    links:
+      - php:php
     depends_on:
       - php
-#  mysql:
-#    image: mysql:5.7
-#    user: "1000:50"
-#    volumes:
-#      - ./mysql/my.cnf:/etc/mysql/my.cnf
-#      - ./mysql/data:/var/lib/mysql
-#      - ./mysql/init:/docker-entrypoint-initdb.d
-#      - ./mysql/logs:/var/log/mysql
-#    environment:
-#       MYSQL_DATABASE: ${DB_DATABASE}
-#       MYSQL_USER: ${DB_USERNAME}
-#       MYSQL_PASSWORD: ${DB_PASSWORD}
-#       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-#    ports:
-#      - ${DB_PORT}:3306
-#    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-#    command: "--innodb_use_native_aio=0"
+  mysql:
+    image: mysql:5.7
+    container_name: mysql5_7
+    user: "1000:50"
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/logs:/var/log/mysql
+    environment:
+       MYSQL_DATABASE: ${DB_DATABASE}
+       MYSQL_USER: ${DB_USERNAME}
+       MYSQL_PASSWORD: ${DB_PASSWORD}
+       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - ${DB_PORT}:3306
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: "--innodb_use_native_aio=0"
 #  smtp:
 #    image: schickling/mailcatcher
 #    ports:
@@ -87,9 +94,9 @@ services:
     command:  "npm install"
     command:  "npm start"
     ports:
-      - ${NODE_PORT}:${NODE_PORT}
+      - ${MIX_NODE_PORT}:3000
     depends_on:
-#      - mysql
+      - mysql
       - redis
     links:
       - redis
