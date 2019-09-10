@@ -973,3 +973,5 @@ unison: started
 [2019-09-09 21:51:41 +0900] Sync Log:  [END] Updating file ib_logfile0
 [2019-09-09 21:51:41 +0900] Sync Log:  UNISON 2.51.2 (OCAML 4.06.1) finished propagating changes at 21:51:41.12 on 09 Sep 2019
 [2019-09-09 21:51:41 +0900] Sync Log:  Synchronization complete at 21:51:41  (1 item transferred, 0 skipped, 0 failed)
+[2019-09-10 06:33:41 +0900] Sync Log:  Error response from daemon: dial unix docker.raw.sock: connect: connection refused
+[2019-09-10 06:33:41 +0900] Sync Log:  Error response from daemon: dial unix docker.raw.sock: connect: connection refused
