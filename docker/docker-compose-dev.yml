@@ -1,15 +1,15 @@
-version: '3'
-
-volumes:
-  www-data:
-    external: true
-  mysql-data:
-    external: true
-
-services:
-  nginx:
-    volumes:
-      - www-data:/var/www/html
-  mysql:
-    volumes:
-      - mysql-data:/var/lib/mysql
+# version: '3'
+#
+# volumes:
+#   www-data:
+#     external: true
+#   mysql-data:
+#     external: true
+#
+# services:
+#   nginx:
+#     volumes:
+#       - www-data:/var/www/html
+#   mysql:
+#     volumes:
+#       - mysql-data:/var/lib/mysql
