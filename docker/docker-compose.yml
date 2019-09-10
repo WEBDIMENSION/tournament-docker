@@ -1,29 +1,12 @@
 version: '3'
 services:
-#  php_apache:
-#    build:
-#      context: .
-#      dockerfile: ./php_apache/Dockerfile
-##    ports:
-##      - ${APP_HTTP_PORT}:${APP_HTTP_PORT}
-##      - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
-#    environment:
-#      - VIRTUAL_HOST=tournament.local
-#      - VIRTUAL_PORT=443
-#      - CERT_NAME=server
-#    volumes:
-#      - ../${APP_NAME}:/var/www/html
-#    depends_on:
-#      - mysql
-#      - redis
-#    links:
-#      - redis
   php:
     build: ./php
     container_name: php
     volumes:
       - ../Laravel:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
+      - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     external_links:
       - smtp
 #      - mysql5.7:mysql5.7
@@ -47,7 +30,7 @@ services:
     volumes:
       - ./php/logs:/var/logs/nginx
       - ../Laravel:/var/www/html
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
 #      - ./certs/server.crt:/etc/nginx/server.crt
 #      - ./certs/server.key:/etc/nginx/server.key
     links:
@@ -89,7 +72,7 @@ services:
     image: node:10
     volumes:
       - ../${APP_NAME}/node:/node
-      - ./certs:/ssl
+      - ./certs:/certs
     working_dir: /node
     command:  "npm install"
     command:  "npm start"
@@ -104,3 +87,23 @@ networks:
   default:
     external:
       name: shared
+
+#  php_apache:
+#    build:
+#      context: .
+#      dockerfile: ./php_apache/Dockerfile
+##    ports:
+##      - ${APP_HTTP_PORT}:${APP_HTTP_PORT}
+##      - ${APP_HTTPS_PORT}:${APP_HTTPS_PORT}
+#    environment:
+#      - VIRTUAL_HOST=tournament.local
+#      - VIRTUAL_PORT=443
+#      - CERT_NAME=server
+#    volumes:
+#      - ../${APP_NAME}:/var/www/html
+#    depends_on:
+#      - mysql
+#      - redis
+#    links:
+#      - redis
+

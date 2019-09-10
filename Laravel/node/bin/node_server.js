@@ -4,8 +4,8 @@ const http = require('https');
 const redis = require('socket.io-redis');
 const fs = require('fs');
 const socketIo = require('socket.io')();
-const SSL_KEY = '/ssl/server.key';
-const SSL_CERT= '/ssl/server.crt';
+const SSL_KEY = '/certs/server.key';
+const SSL_CERT= '/certs/server.crt';
 const sslOptions = {
   key: fs.readFileSync(SSL_KEY),
   cert: fs.readFileSync(SSL_CERT)

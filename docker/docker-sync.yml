@@ -1,9 +1,0 @@
-# version: '2'
-# options:
-#   compose-dev-file-path: 'docker-compose-dev.yml'
-# syncs:
-#   www-data:
-#     src: '../Laravel'
-#     sync_excludes: [ '.git', '.idea', 'node_modules' ]
-#   mysql-data:
-#     src: './mysql/data'
