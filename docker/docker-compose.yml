@@ -2,7 +2,7 @@ version: '3'
 services:
   php:
     build: ./php
-    container_name: php
+    container_name: tournament_php
     volumes:
       - ../Laravel:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
@@ -39,7 +39,7 @@ services:
       - php
   mysql:
     image: mysql:5.7
-    container_name: mysql5_7
+    container_name: tournament_mysql5_7
     user: "1000:50"
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
@@ -62,6 +62,7 @@ services:
 #      - ${MAIL_PORT}:${MAIL_PORT}
   redis:
     image: redis:latest
+    container_name: tournament_redis
     user: "999:redis"
     ports:
       - ${REDIS_PORT}:6379
@@ -70,6 +71,7 @@ services:
     command: "redis-server --appendonly yes"
   node:
     image: node:10
+    container_name: tournament_node
     volumes:
       - ../${APP_NAME}/node:/node
       - ./certs:/certs
