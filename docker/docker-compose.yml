@@ -88,7 +88,7 @@ services:
 networks:
   default:
     external:
-      name: shared
+      name: nginx-proxy
 
 #  php_apache:
 #    build:
