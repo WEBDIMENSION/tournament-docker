@@ -8,7 +8,7 @@
                 <h1>{{$cup->cup_name}}</h1>
                 <div class="col">
                     <img class="card-img-top"
-                         src="http://placehold.jp/888888/ffffff/800x600.png?text={{$cup->cup_name}}"
+                         src="https://placehold.jp/888888/ffffff/800x600.png?text={{$cup->cup_name}}"
                          alt="{{$cup->cup_name}}">
                     <div class="card-body">
                         <h3 class="card-title">{{$cup->cup_name}}</h3>

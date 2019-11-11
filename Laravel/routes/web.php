@@ -18,6 +18,9 @@ Route::get('/', 'IndexController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@postScore')->name('scorePost');
 
+Route::get('/score', 'Score\ScoreController@index')->name('score');
+Route::get('/score/{cup_number}', 'Score\ScoreController@cup')->name('score');
+
 Route::get('/cup/{cup_number}', 'CupController@events')->name('cup');
 Route::get('/event/{event_number}', 'EventController@index')->name('cup');
 

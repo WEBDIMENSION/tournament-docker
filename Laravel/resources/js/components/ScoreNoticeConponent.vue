@@ -53,7 +53,8 @@
           winnerText += '<span>' + data.winner[i] + '</span>'
           // console.log(obj.winner[i])
         }
-        this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
+        // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
+          this.messages = [this.messages, {score: data['score'], winner: winnerText}];
         console.log(data.name);
         console.log(data.message);
 

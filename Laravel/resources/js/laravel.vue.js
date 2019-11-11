@@ -30,6 +30,9 @@ Vue.component('axios-component', require('./components/axiosComponent.vue').defa
 Vue.component('scoremodal-component', require('./components/ScoreModalComponent.vue').default);
 Vue.component('socket-component', require('./components/socketComponent.vue').default);
 Vue.component('score-notice-component', require('./components/ScoreNoticeConponent.vue').default);
+Vue.component('display-event-component', require('./components/DisplayEventConponent.vue').default);
+Vue.component('display-tournament-component', require('./components/DisplayTournamentConponent.vue').default);
+Vue.component('score-cups-component', require('./components/ScoreCupsConponent.vue').default);
 
 
 /**

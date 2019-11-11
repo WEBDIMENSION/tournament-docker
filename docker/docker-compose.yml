@@ -73,11 +73,10 @@ services:
     image: node:10
     container_name: tournament_node
     volumes:
-      - ../${APP_NAME}/node:/node
+      - ../Laravel/node:/node
       - ./certs:/certs
     working_dir: /node
-    command:  "npm install"
-    command:  "npm start"
+    command: bash -c  "npm install && npm start"
     ports:
       - ${MIX_NODE_PORT}:3000
     depends_on:

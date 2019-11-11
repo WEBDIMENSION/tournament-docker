@@ -11,19 +11,19 @@ class IndexController extends Controller
  {
 	$carousel_array = [
 		['title' => 'Carousel Title Sample001',
-			'src' => 'http://placehold.jp/979ac7/ffffff/1028x516.png?text=sample001',
+			'src' => 'https://placehold.jp/979ac7/ffffff/1028x516.png?text=sample001',
 			'description' => 'Description Sample001',
 		],
 		['title' => 'Carousel Title Sample002',
-			'src' => 'http://placehold.jp/bc7dc9/ffffff/1028x516.png?text=sample002',
+			'src' => 'https://placehold.jp/bc7dc9/ffffff/1028x516.png?text=sample002',
 			'description' => 'Description Sample002',
 		],
 		['title' => 'Carousel Title Sample003',
-			'src' => 'http://placehold.jp/3d4f44/ffffff/1028x516.png?text=sample003',
+			'src' => 'https://placehold.jp/3d4f44/ffffff/1028x516.png?text=sample003',
 			'description' => 'Description Sample003',
 		],
 		['title' => 'Carousel Title Sample004',
-			'src' => 'http://placehold.jp/827253/ffffff/1028x516.png?text=sample004',
+			'src' => 'https://placehold.jp/827253/ffffff/1028x516.png?text=sample004',
 			'description' => 'Description Sample004',
 		],
 	];
@@ -50,20 +50,20 @@ class IndexController extends Controller
 		],
 	];
 	$sponsors= [
-		['src'=>'http://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A001',
+		['src'=>'https://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A001',
 			'title'=>'title sponsor_001'],
-		['src'=>'http://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A002',
+		['src'=>'https://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A002',
 			'title'=>'title sponsor_002'],
-		['src'=>'http://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A003',
+		['src'=>'https://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A003',
 			'title'=>'title sponsor_003'],
-		['src'=>'http://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A004',
+		['src'=>'https://placehold.jp/4677a6/ffffff/800x600.png?text=Sponsor%0A004',
 			'title'=>'title sponsor_004'],
 		];
      $cups = Cup::all();
      $cups_count = Cup::all()->count();
 	return view('index')->with([
 			'carousels' => $carousel_array,
-			'cups' => $cups_array,
+//			'cups' => $cups_array,
 			'sponsors' => $sponsors,
             'cups' => $cups,
             'cups_count' => $cups_count,
