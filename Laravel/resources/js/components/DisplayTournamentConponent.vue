@@ -59,17 +59,17 @@
                 axios.post(this.postCardEndPoint, {
                     tournamentId: this.getData.id,
                     winner: this.getData.winner,
-                    score: this.getData.score
+                    score: this.getData.score,
                 })
                     .then(function (response) {
-                        console.log(response.data)
+                        console.log(response.data),
+                        this.getTournament()
                     })
                     .catch(function (error) {
                         console.log(error)
                     })
             },
-        },
-        mounted: function(){
+            getTournament: function(event){
                 this.getCardEndPoint = this.getCardUrl + '/' + this.tournament.id + '?api_token=' + this.token
                 // alert(this.getCardEndPoint)
                 axios
@@ -80,6 +80,10 @@
                         // alert(this.getData)
                     })
                     .catch(error => console.log(error))
+            }
+        },
+        mounted: function(){
+                this.getTournament()
         }
     }
 

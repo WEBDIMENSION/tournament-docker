@@ -1909,23 +1909,26 @@ __webpack_require__.r(__webpack_exports__);
         winner: this.getData.winner,
         score: this.getData.score
       }).then(function (response) {
-        console.log(response.data);
+        console.log(response.data), this.getTournament();
       })["catch"](function (error) {
         console.log(error);
+      });
+    },
+    getTournament: function getTournament(event) {
+      var _this = this;
+
+      this.getCardEndPoint = this.getCardUrl + '/' + this.tournament.id + '?api_token=' + this.token; // alert(this.getCardEndPoint)
+
+      axios.get(this.getCardEndPoint).then(function (response) {
+        _this.getData = response.data;
+        console.log(_this.getData); // alert(this.getData)
+      })["catch"](function (error) {
+        return console.log(error);
       });
     }
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.getCardEndPoint = this.getCardUrl + '/' + this.tournament.id + '?api_token=' + this.token; // alert(this.getCardEndPoint)
-
-    axios.get(this.getCardEndPoint).then(function (response) {
-      _this.getData = response.data;
-      console.log(_this.getData); // alert(this.getData)
-    })["catch"](function (error) {
-      return console.log(error);
-    });
+    this.getTournament();
   }
 });
 
