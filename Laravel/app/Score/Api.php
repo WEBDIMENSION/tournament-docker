@@ -68,5 +68,10 @@ class Api
         return $result_json = json_encode(array('result' => true, 'code' => '000'));
     }
 
+    public function getCard(Request $request){
+        $tournamentId = $request->tournament_id;
+        return Tournament::where('id', $tournamentId)->get()->first()->toJson();
+    }
+
 }
 

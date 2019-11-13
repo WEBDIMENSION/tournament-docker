@@ -32,6 +32,10 @@ class ScoreController extends Controller
 //       return $cup_number;
     }
 
+    public function getCard(Request $request){
+        return $this->api->getCard($request);
+    }
+
     public function postTournament(Request $request){
         return $this->api->postTournament($request);
     }

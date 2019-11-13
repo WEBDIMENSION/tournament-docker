@@ -1893,29 +1893,39 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      tournament: '',
-      token: '',
-      tournamentId: '',
-      winner: '',
-      score: '',
-      url: '/api/score/post_tournament',
-      endPoint: ''
+      getCardUrl: '/api/score/get_card',
+      postCardUrl: '/api/score/post_tournament',
+      getCardEndPoint: '',
+      postCardEndPoint: '',
+      getData: ''
     };
   },
   methods: {
     postTournament: function postTournament(event) {
-      this.endPoint = this.url + '?api_token=' + this.token; // alert(this.endPoint);
+      this.postCardEndPoint = this.postCardUrl + '?api_token=' + this.token; // alert(this.endPoint);
 
-      axios.post(this.endPoint, {
-        tournamentId: this.tournament.id,
-        winner: this.winner,
-        score: this.score
+      axios.post(this.postCardEndPoint, {
+        tournamentId: this.getData.id,
+        winner: this.getData.winner,
+        score: this.getData.score
       }).then(function (response) {
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.getCardEndPoint = this.getCardUrl + '/' + this.tournament.id + '?api_token=' + this.token; // alert(this.getCardEndPoint)
+
+    axios.get(this.getCardEndPoint).then(function (response) {
+      _this.getData = response.data;
+      console.log(_this.getData); // alert(this.getData)
+    })["catch"](function (error) {
+      return console.log(error);
+    });
   }
 });
 
@@ -2202,7 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
       from_api_message: '',
       messages: [],
       show: false,
-      socket: io("https://tournament.local" + ':' + "3000")
+      socket: io("tournament.local" + ':' + "3000")
     };
   },
   mounted: function mounted() {
@@ -13832,133 +13842,143 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("form", [
-    _vm.tournament.player_a_id !== null
-      ? _c("div", { staticClass: "pb-3 mb-3 border-bottom border-light" }, [
-          _c("h3", [
-            _vm._v(
-              _vm._s(_vm.tournament.round) +
-                "Round - " +
-                _vm._s(_vm.tournament.card_number) +
-                " Game"
+    _c("div", { staticClass: "pb-3 mb-3 border-bottom border-light" }, [
+      _c("h3", [
+        _vm._v(
+          _vm._s(_vm.getData.round) +
+            "Round - " +
+            _vm._s(_vm.getData.card_number) +
+            " Game"
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "row col-md-5 d-inline-block pl-5" }, [
+          _vm._v(
+            "\n                Winnner : " +
+              _vm._s(_vm.getData.winner) +
+              "\n                "
+          ),
+          _c("div", {}, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.getData.winner,
+                  expression: "getData.winner"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "radio", id: "radio1" },
+              domProps: {
+                value: _vm.getData.player_a_id,
+                checked: _vm._q(_vm.getData.winner, _vm.getData.player_a_id)
+              },
+              on: {
+                change: function($event) {
+                  return _vm.$set(
+                    _vm.getData,
+                    "winner",
+                    _vm.getData.player_a_id
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "radio1" } },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.getData.player_a_name) +
+                    "\n                    "
+                )
+              ]
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "row col-md-5 d-inline-block pl-5" }, [
-              _vm._v("\n            Winnner\n            "),
-              _c("div", {}, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.winner,
-                      expression: "winner"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", id: "radio1", name: "winner" },
-                  domProps: {
-                    value: _vm.tournament.player_a_id,
-                    checked: _vm._q(_vm.winner, _vm.tournament.player_a_id)
-                  },
-                  on: {
-                    change: function($event) {
-                      _vm.winner = _vm.tournament.player_a_id
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "form-check-label", attrs: { for: "radio1" } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.tournament.player_a_name) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", {}, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.winner,
-                      expression: "winner"
-                    }
-                  ],
-                  staticClass: "form-check-input",
-                  attrs: { type: "radio", id: "radio2", name: "winner" },
-                  domProps: {
-                    value: _vm.tournament.player_b_id,
-                    checked: _vm._q(_vm.winner, _vm.tournament.player_b_id)
-                  },
-                  on: {
-                    change: function($event) {
-                      _vm.winner = _vm.tournament.player_b_id
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "form-check-label", attrs: { for: "radio1" } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.tournament.player_b_name) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-3 d-inline-block" }, [
-              _vm._v("\n            Score\n            "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.score,
-                    expression: "score"
-                  }
-                ],
-                attrs: { type: "text", name: "score" },
-                domProps: { value: _vm.score },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.score = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-2 d-inline-block text-right" }, [
-              _c(
-                "button",
+          _c("div", {}, [
+            _c("input", {
+              directives: [
                 {
-                  staticClass: "d-block w-100",
-                  attrs: { type: "button" },
-                  on: { click: _vm.postTournament }
-                },
-                [_vm._v("Send")]
-              )
-            ])
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.getData.winner,
+                  expression: "getData.winner"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "radio", id: "radio2" },
+              domProps: {
+                value: _vm.getData.player_b_id,
+                checked: _vm._q(_vm.getData.winner, _vm.getData.player_b_id)
+              },
+              on: {
+                change: function($event) {
+                  return _vm.$set(
+                    _vm.getData,
+                    "winner",
+                    _vm.getData.player_b_id
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              { staticClass: "form-check-label", attrs: { for: "radio1" } },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.getData.player_b_name) +
+                    "\n                    "
+                )
+              ]
+            )
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3 d-inline-block" }, [
+          _vm._v("\n                Score\n                "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.getData.score,
+                expression: "getData.score"
+              }
+            ],
+            attrs: { type: "text", name: "score" },
+            domProps: { value: _vm.getData.score },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.getData, "score", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-2 d-inline-block text-right" }, [
+          _c(
+            "button",
+            {
+              staticClass: "d-block w-100",
+              attrs: { type: "button" },
+              on: { click: _vm.postTournament }
+            },
+            [_vm._v("Send")]
+          )
         ])
-      : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -52731,14 +52751,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************************!*\
   !*** ./resources/js/components/DisplayTournamentConponent.vue ***!
   \****************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DisplayTournamentConponent_vue_vue_type_template_id_1cf12d5e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DisplayTournamentConponent.vue?vue&type=template&id=1cf12d5e&scoped=true& */ "./resources/js/components/DisplayTournamentConponent.vue?vue&type=template&id=1cf12d5e&scoped=true&");
 /* harmony import */ var _DisplayTournamentConponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DisplayTournamentConponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DisplayTournamentConponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _DisplayTournamentConponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _DisplayTournamentConponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52768,7 +52789,7 @@ component.options.__file = "resources/js/components/DisplayTournamentConponent.v
 /*!*****************************************************************************************!*\
   !*** ./resources/js/components/DisplayTournamentConponent.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
