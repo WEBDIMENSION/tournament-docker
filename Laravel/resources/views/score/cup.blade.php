@@ -18,6 +18,7 @@
                     </div>
                     <score-notice-component></score-notice-component>
                 </div>
+
                 <div class="col-md-9">
                     @if($cup->events)
                         <ul class="nav nav-tabs border-bottom-0 list-group" id="eventTab" role="eventTablist">

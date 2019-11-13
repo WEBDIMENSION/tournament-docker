@@ -12,7 +12,6 @@ window.vuetify = require('vuetify');
 window.axios = require('axios');
 window.io = require('socket.io-client');
 // window.ioc = require('socket.io');
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
