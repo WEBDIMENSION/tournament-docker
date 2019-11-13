@@ -33,6 +33,7 @@
         opacity: 0;
     }
 </style>
+
 <script>
   export default {
     data: () => ({
@@ -42,7 +43,7 @@
       from_api_message: '',
       messages: [],
       show: false,
-      socket: io(process.env.MIX_NODE_URL + ':' + process.env.MIX_NODE_PORT),
+      socket: io(process.env.MIX_NODE_HOST + ':' + process.env.MIX_NODE_PORT),
     }),
     mounted: function () {
       this.socket.on('LaravelGetScoreMess', (data) => {

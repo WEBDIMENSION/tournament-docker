@@ -2157,7 +2157,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(process) {//
+//
+//
 //
 //
 //
@@ -2201,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
       from_api_message: '',
       messages: [],
       show: false,
-      socket: io(process.env.MIX_NODE_URL + ':' + "3000")
+      socket: io("https://tournament.local" + ':' + "3000")
     };
   },
   mounted: function mounted() {
@@ -2236,7 +2237,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
