@@ -49,6 +49,11 @@ class ScoreController extends Controller
             ]
         );
     }
+
+    /**
+     * @param $cup_number
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function cup($cup_number){
         $user = Auth::user();
         $userId = $user->getAuthIdentifier();
