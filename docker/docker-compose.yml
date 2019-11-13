@@ -74,7 +74,7 @@ services:
     container_name: tournament_node
     volumes:
       - ../Laravel/node:/node
-      - ./certs:/certs
+      - ./node/certs:/certs
     working_dir: /node
     command: bash -c  "npm install && npm start"
     ports:
