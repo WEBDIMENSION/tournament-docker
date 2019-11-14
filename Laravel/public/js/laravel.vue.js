@@ -1806,6 +1806,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     cupId: String,
@@ -13859,45 +13874,72 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "li",
-        { staticClass: "nav-item bg-primary mb-2 list-group-item-action " },
-        [
-          _c("a", { staticClass: "nav-link row d-block" }, [
-            _c("span", { staticClass: "col-md-7 d-inline-block" }, [
-              _vm._v(_vm._s(_vm.eventName))
-            ]),
-            _c("span", { staticClass: "col-md-5 text-right d-inline-block" }, [
-              _vm._v(
-                "                Player数:" +
-                  _vm._s(_vm.playersCount) +
-                  " SetCount:" +
-                  _vm._s(_vm.setCount) +
-                  " TieBeak:" +
-                  _vm._s(_vm.tiebreak)
-              )
-            ])
+  return _c("div", [
+    _c(
+      "li",
+      { staticClass: "nav-item bg-primary mb-2 list-group-item-action " },
+      [
+        _c("a", { staticClass: "nav-link row d-block" }, [
+          _c("span", { staticClass: "col-md-7 d-inline-block" }, [
+            _vm._v(_vm._s(_vm.eventName))
+          ]),
+          _c("span", { staticClass: "col-md-5 text-right d-inline-block" }, [
+            _vm._v(
+              "                Player数:" +
+                _vm._s(_vm.playersCount) +
+                " SetCount:" +
+                _vm._s(_vm.setCount) +
+                " TieBeak:" +
+                _vm._s(_vm.tiebreak)
+            )
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        _vm._l(_vm.rounds.length, function(roundNumber) {
-          return _c("div", { staticClass: "d-inline-block mr-3" }, [
-            _vm._v("\n            " + _vm._s(roundNumber) + "R\n        ")
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "ul",
+      {
+        staticClass: "nav nav-tabs",
+        attrs: { id: "roundsTab", role: "tablist" }
+      },
+      _vm._l(_vm.rounds.length, function(roundNumber) {
+        return _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: roundNumber,
+                "data-toggle": "tab",
+                href: "#" + roundNumber,
+                role: "tab",
+                "aria-controls": roundNumber,
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("\n                " + _vm._s(roundNumber) + "R")]
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "tab-content mt-3", attrs: { id: "roundTabContent" } },
       _vm._l(_vm.tournaments, function(tournament) {
         return _c(
           "div",
-          { key: tournament.round },
+          {
+            key: tournament.round,
+            staticClass: "tab-panel fade show active",
+            attrs: {
+              id: tournament.round,
+              "": _vm.tabpanel,
+              "aria-lavelledby": tournament.round
+            }
+          },
           [
             _c("display-tournament-component", {
               attrs: {
@@ -13912,10 +13954,10 @@ var render = function() {
           ],
           1
         )
-      })
-    ],
-    2
-  )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

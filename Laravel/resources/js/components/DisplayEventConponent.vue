@@ -6,23 +6,38 @@
                 <span class="col-md-7 d-inline-block">{{ eventName }}</span><span
                 class="col-md-5 text-right d-inline-block">                Player数:{{ playersCount }} SetCount:{{ setCount }} TieBeak:{{ tiebreak }}</span></a>
         </li>
-        <div>
-            <div v-for="roundNumber in rounds.length" class="d-inline-block mr-3">
-                {{ roundNumber }}R
-            </div>
-        </div>
+        <ul class="nav nav-tabs" id="roundsTab" role="tablist">
+            <li v-for="roundNumber in rounds.length" class="nav-item">
+                <a class="nav-link active"
+                   v-bind:id="roundNumber"
+                   data-toggle="tab"
+                   v-bind:href="'#' + roundNumber"
+                   role="tab"
+                   v-bind:aria-controls="roundNumber"
+                   aria-selected="false"
+                >
+                    {{ roundNumber }}R</a>
+            </li>
+        </ul>
         <!--        <div v-for="round in rounds" :key="round.round">-->
         <!--        {{ round.count }}-->
         <!--        </div>-->
-        <div v-for="tournament in tournaments" :key="tournament.round">
-            <display-tournament-component
-                v-bind:cup-id="cupId"
-                v-bind:cup-name="cupName"
-                v-bind:event-id="eventId"
-                v-bind:event-name="eventName"
-                v-bind:tournament="tournament"
-                v-bind:token="token"
-            ></display-tournament-component>
+        <div class="tab-content mt-3" id="roundTabContent">
+            <div v-for="tournament in tournaments" :key="tournament.round"
+                 class="tab-panel fade show active"
+                 v-bind:id="tournament.round"
+                 v-bind:="tabpanel"
+                 v-bind:aria-lavelledby="tournament.round"
+            >
+                <display-tournament-component
+                    v-bind:cup-id="cupId"
+                    v-bind:cup-name="cupName"
+                    v-bind:event-id="eventId"
+                    v-bind:event-name="eventName"
+                    v-bind:tournament="tournament"
+                    v-bind:token="token"
+                ></display-tournament-component>
+            </div>
         </div>
 
     </div>
