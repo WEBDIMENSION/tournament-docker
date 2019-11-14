@@ -63,7 +63,6 @@
         //   this.from_api_message = data.message,
         this.show = true;
         setTimeout(this.noticeClose, 5000);
-        console.log('pull!');
       })
     },
     methods: {

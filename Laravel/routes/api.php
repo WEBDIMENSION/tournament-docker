@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 Route::get('score/u/{winner}/{score}', 'Score\ScoreController@scoreEdit');
-Route::middleware('auth:api')->get('score/get_tournament/{event_number}', 'Api\ScoreController@getTournament');
-Route::middleware('auth:api')->get('score/get_card/{tournament_id}', 'Api\ScoreController@getCard');
+Route::middleware('auth:api')->get('score/get_tournaments/{event_number}', 'Api\ScoreController@getTournaments');
+Route::middleware('auth:api')->get('score/get_tournament/{tournament_id}', 'Api\ScoreController@getTournament');
 Route::middleware('auth:api')->post('score/post_tournament', 'Api\ScoreController@postTournament');
 

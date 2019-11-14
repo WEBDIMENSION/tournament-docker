@@ -29,7 +29,7 @@ class Api
      * @param $request
      * @return mixed
      */
-    public function getTournament($request)
+    public function getTournaments($request)
     {
         $eventInfo = Event::where('event_number', $request->event_number)->get()->first();
 //         $tournaments = Tournament::where('event_id', $eventInfo->id)->get()->toJson();
@@ -47,11 +47,17 @@ class Api
     public function postTournament(Request $request)
     {
         $request = json_decode(file_get_contents('php://input'), true);
-        $id = $request['tournamentId'];
+        $cupId = $request['cupId'];
+        $cupName = $request['cupName'];
+        $eventId = $request['eventId'];
+        $eventName = $request['eventName'];
+        $roundNumber = $request['roundNumber'];
+        $cardNumber = $request['cardNumber'];
+        $tournamentId = $request['tournamentId'];
         $score = $request['score'];
         $winner = $request['winner'];
 
-        $tournament = Tournament::find($id);
+        $tournament = Tournament::find($tournamentId);
         $tournament->score = $score;
         $tournament->winner = $winner;
         $tournament->save();
@@ -60,6 +66,13 @@ class Api
         $emitter = new \SocketIO\Emitter($redis);
         $winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();;
         $data = array(
+            'cupId'=> $cupId,
+            'cupName'=> $cupName,
+            'eventId'=> $eventId,
+            'eventName'=> $eventName,
+            'roundNumber'=> $roundNumber,
+            'cardNumber'=> $cardNumber,
+            'tournamentId'=> $tournamentId,
             'winner' => array($winner->player_name, $winner->partner_name),
             'score' => $score
         );
@@ -68,7 +81,7 @@ class Api
         return $result_json = json_encode(array('result' => true, 'code' => '000'));
     }
 
-    public function getCard(Request $request){
+    public function getTournament(Request $request){
         $tournamentId = $request->tournament_id;
         return Tournament::where('id', $tournamentId)->get()->first()->toJson();
     }

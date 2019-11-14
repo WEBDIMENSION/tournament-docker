@@ -1793,45 +1793,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     cupId: String,
+    cupName: String,
+    eventId: String,
     eventName: String,
     eventNumber: String,
     playersCount: String,
     setCount: String,
     rule: String,
     tiebreak: String,
-    url: String,
     token: String
   },
   data: function data() {
     return {
-      cupId: '',
-      eventName: '',
-      eventNumber: '',
-      playersCount: '',
-      setCount: '',
-      rule: '',
-      tiebreak: '',
-      url: '',
-      result: '',
+      url: '/api/score/get_tournaments',
+      getTournamentsEndPoint: '',
       tournaments: '',
-      token: ''
+      rounds: ''
     };
   },
   methods: {
-    getTournament: function getTournament(event) {
+    getTournaments: function getTournaments(event) {
       var _this = this;
 
-      // alert(this.url)
-      axios.get(this.url + '?api_token=' + this.token).then(function (response) {
+      this.getTournamentsEndPoint = this.url + '/' + this.eventNumber + '?api_token=' + this.token; // alert(this.getTournamentsEndPoint)
+
+      axios.get(this.getTournamentsEndPoint).then(function (response) {
         _this.tournaments = response.data;
-        console.log(_this.result);
+        _this.rounds = _this.tournaments.reduce(function (result, current) {
+          var element = result.find(function (p) {
+            return p.round === current.round;
+          });
+
+          if (element) {
+            element.count++; // count
+          } else {
+            result.push({
+              round: current.round,
+              count: 1
+            });
+          }
+
+          return result;
+        }, []);
+        console.log(_this.events);
       })["catch"](function (error) {
         return console.log(error);
-      });
+      }); // alert(this.tournaments)
     }
+  },
+  mounted: function mounted() {
+    this.getTournaments();
   }
 });
 
@@ -1887,18 +1914,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    cupId: String,
+    cupName: String,
+    eventId: String,
+    eventName: String,
     tournament: String,
     token: String
   },
   data: function data() {
     return {
-      getCardUrl: '/api/score/get_card',
+      getCardUrl: '/api/score/get_tournament',
       postCardUrl: '/api/score/post_tournament',
       getCardEndPoint: '',
       postCardEndPoint: '',
-      getData: ''
+      getData: '',
+      messages: [],
+      socket: io("tournament.local" + ':' + "3000")
     };
   },
   methods: {
@@ -1906,14 +1946,21 @@ __webpack_require__.r(__webpack_exports__);
       this.postCardEndPoint = this.postCardUrl + '?api_token=' + this.token; // alert(this.endPoint);
 
       axios.post(this.postCardEndPoint, {
+        cupId: this.cupId,
+        cupName: this.cupName,
+        eventId: this.eventId,
+        eventName: this.eventName,
         tournamentId: this.getData.id,
+        roundNumber: this.getData.round,
+        cardNumber: this.getData.card_number,
         winner: this.getData.winner,
         score: this.getData.score
       }).then(function (response) {
-        console.log(response.data), this.getTournament();
+        console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
+      this.getTournament();
     },
     getTournament: function getTournament(event) {
       var _this = this;
@@ -1929,7 +1976,41 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getTournament();
+    var _this2 = this;
+
+    this.getTournament(), this.socket.on('LaravelGetScoreMess', function (data) {
+      var data = JSON.parse(data); // this.messages = [...this.messages, data];
+
+      var winnerText = '';
+
+      for (var i = 0; i < data.winner.length; i++) {
+        winnerText += '<span>' + data.winner[i] + '</span>'; // console.log(obj.winner[i])
+      } // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
+
+
+      _this2.messages = [_this2.messages, {
+        score: data['score'],
+        winner: winnerText
+      }];
+
+      if (_this2.tournament.id == data.tournamentId) {
+        // console.log(data.tournamentId);
+        console.log(data.cupId);
+        console.log(data.cupName);
+        console.log(data.eventId);
+        console.log(data.eventName);
+        console.log(data.roundNumber);
+        console.log(data.cardNumber);
+
+        _this2.getTournament();
+      } // console.log(data.message);
+      // this.from_api_name = data.name,
+      //   this.from_api_message = data.message,
+      // this.show = true;
+      // setTimeout(this.noticeClose, 5000);
+      // console.log('pull!');
+
+    });
   }
 });
 
@@ -2242,7 +2323,6 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.show = true;
       setTimeout(_this.noticeClose, 5000);
-      console.log('pull!');
     });
   },
   methods: {
@@ -2412,8 +2492,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       _this.messages = [].concat(_toConsumableArray(_this.messages), [data]);
       console.log(data.name);
       console.log(data.message);
-      _this.from_api_name = data.name, _this.from_api_message = data.message, _this.show = true, // setTimeout(this.show = false, 3000);
-      console.log('pull!');
+      _this.from_api_name = data.name, _this.from_api_message = data.message, _this.show = true; // setTimeout(this.show = false, 3000);
+      // console.log('pull!');
     }), axios.get('/api/score/u/jason/13143214').then(function (res) {
       // console.log('socket mounted.')
       // console.log(res.data[0]['result']);
@@ -13784,10 +13864,7 @@ var render = function() {
     [
       _c(
         "li",
-        {
-          staticClass: "nav-item bg-primary mb-2 list-group-item-action ",
-          on: { click: _vm.getTournament }
-        },
+        { staticClass: "nav-item bg-primary mb-2 list-group-item-action " },
         [
           _c("a", { staticClass: "nav-link row d-block" }, [
             _c("span", { staticClass: "col-md-7 d-inline-block" }, [
@@ -13807,13 +13884,30 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.rounds.length, function(roundNumber) {
+          return _c("div", { staticClass: "d-inline-block mr-3" }, [
+            _vm._v("\n            " + _vm._s(roundNumber) + "R\n        ")
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
       _vm._l(_vm.tournaments, function(tournament) {
         return _c(
           "div",
           { key: tournament.round },
           [
             _c("display-tournament-component", {
-              attrs: { tournament: tournament, token: _vm.token }
+              attrs: {
+                "cup-id": _vm.cupId,
+                "cup-name": _vm.cupName,
+                "event-id": _vm.eventId,
+                "event-name": _vm.eventName,
+                tournament: tournament,
+                token: _vm.token
+              }
             })
           ],
           1
@@ -13859,93 +13953,105 @@ var render = function() {
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "row col-md-5 d-inline-block pl-5" }, [
           _vm._v(
-            "\n                Winnner : " +
+            "\n                    Winnner : " +
               _vm._s(_vm.getData.winner) +
-              "\n                "
+              "\n                    "
           ),
-          _c("div", {}, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.getData.winner,
-                  expression: "getData.winner"
-                }
-              ],
-              staticClass: "form-check-input",
-              attrs: { type: "radio", id: "radio1" },
-              domProps: {
-                value: _vm.getData.player_a_id,
-                checked: _vm._q(_vm.getData.winner, _vm.getData.player_a_id)
-              },
-              on: {
-                change: function($event) {
-                  return _vm.$set(
-                    _vm.getData,
-                    "winner",
-                    _vm.getData.player_a_id
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "radio1" } },
-              [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.getData.player_a_name) +
-                    "\n                    "
+          _vm.getData.player_a_id !== null
+            ? _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.getData.winner,
+                      expression: "getData.winner"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", id: "radio1" },
+                  domProps: {
+                    value: _vm.getData.player_a_id,
+                    checked: _vm._q(_vm.getData.winner, _vm.getData.player_a_id)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.$set(
+                        _vm.getData,
+                        "winner",
+                        _vm.getData.player_a_id
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "radio1" } },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.getData.player_a_name) +
+                        "\n                        "
+                    )
+                  ]
                 )
-              ]
-            )
-          ]),
+              ])
+            : _c("div", [
+                _vm._v(
+                  "\n                        Not regist yet.\n                    "
+                )
+              ]),
           _vm._v(" "),
-          _c("div", {}, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.getData.winner,
-                  expression: "getData.winner"
-                }
-              ],
-              staticClass: "form-check-input",
-              attrs: { type: "radio", id: "radio2" },
-              domProps: {
-                value: _vm.getData.player_b_id,
-                checked: _vm._q(_vm.getData.winner, _vm.getData.player_b_id)
-              },
-              on: {
-                change: function($event) {
-                  return _vm.$set(
-                    _vm.getData,
-                    "winner",
-                    _vm.getData.player_b_id
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "form-check-label", attrs: { for: "radio1" } },
-              [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.getData.player_b_name) +
-                    "\n                    "
+          _vm.getData.player_b_id !== null
+            ? _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.getData.winner,
+                      expression: "getData.winner"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "radio", id: "radio2" },
+                  domProps: {
+                    value: _vm.getData.player_b_id,
+                    checked: _vm._q(_vm.getData.winner, _vm.getData.player_b_id)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.$set(
+                        _vm.getData,
+                        "winner",
+                        _vm.getData.player_b_id
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "form-check-label", attrs: { for: "radio1" } },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(_vm.getData.player_b_name) +
+                        "\n                        "
+                    )
+                  ]
                 )
-              ]
-            )
-          ])
+              ])
+            : _c("div", [
+                _vm._v(
+                  "\n                        Not regist yet.\n                    "
+                )
+              ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3 d-inline-block" }, [
-          _vm._v("\n                Score\n                "),
+          _vm._v("\n                    Score\n                    "),
           _c("input", {
             directives: [
               {

@@ -23,17 +23,17 @@ class ScoreController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function getTournament(Request $request){
+    public function getTournaments(Request $request){
 //        return $scoreApi->
-        return $this->api->getTournament($request);
+        return $this->api->getTournaments($request);
 
 //        return response()->json(['name' => $eventId, 'gender' => '男','mail' => 'yamada@test.com']);
 //        return response()->json(['name' => 'aaa', 'gender' => '男','mail' => 'yamada@test.com']);
 //       return $cup_number;
     }
 
-    public function getCard(Request $request){
-        return $this->api->getCard($request);
+    public function getTournament(Request $request){
+        return $this->api->getTournament($request);
     }
 
     public function postTournament(Request $request){

@@ -25,14 +25,15 @@
                             @foreach($cup->events as $event)
                                 {{--                                        {{$event->event_name}}--}}
                                 <display-event-component
-                                    cup-id="{{$cup->id.$event->id}}"
+                                    cup-id="{{$cup->id}}"
+                                    cup-name="{{$cup->cup_name}}"
+                                    event-id="{{$event->id}}"
                                     event-name="{{$event->event_name}}"
                                     event-number="{{$event->event_number}}"
                                     players-count="{{$event->players_count}}"
                                     set-count="{{$event->set_count}}"
                                     rule="{{$event->rule}}"
                                     tiebreak="{{$event->tiebreak}}"
-                                    url="{{url("/api/score/get_tournament/{$event->event_number}")}}"
                                     token="{{ Auth::user()->api_token }}"
                                 ></display-event-component>
                                 {{--                                        <li class="nav-item bg-primary mb-2 list-group-item-action"><a class="nav-link"--}}

@@ -102,9 +102,9 @@
         console.log(data.message);
         this.from_api_name = data.name,
           this.from_api_message = data.message,
-          this.show = true,
+          this.show = true
           // setTimeout(this.show = false, 3000);
-          console.log('pull!');
+          // console.log('pull!');
       }),
         axios.get('/api/score/u/jason/13143214')
           .then(function (res) {
