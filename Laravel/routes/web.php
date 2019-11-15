@@ -20,12 +20,15 @@ Route::post('/home', 'HomeController@postScore')->name('scorePost');
 
 Route::get('/score', 'Score\ScoreController@index')->name('score');
 Route::get('/score/{cup_number}', 'Score\ScoreController@cup')->name('score');
+Route::get('/jsex', 'Score\ScoreController@jsex')->name('score');
 
 Route::get('/cup/{cup_number}', 'CupController@events')->name('cup');
 Route::get('/event/{event_number}', 'EventController@index')->name('cup');
 
 Route::get('/sample', 'SampleController@index')->name('sample');
 Route::get('/chat', 'ChatController@index')->name('chat');
+
+
 
 //Route::group(['prefix' => 'score'], function() {
 //}

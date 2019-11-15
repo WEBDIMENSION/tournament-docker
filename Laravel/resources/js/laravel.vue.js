@@ -23,8 +23,10 @@ window.io = require('socket.io-client');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
+
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('sample-component', require('./components/SampluComponent.vue').default);
+Vue.component('js-ex-component', require('./components/JsExComponent.vue').default);
 Vue.component('axios-component', require('./components/axiosComponent.vue').default);
 Vue.component('scoremodal-component', require('./components/ScoreModalComponent.vue').default);
 Vue.component('socket-component', require('./components/socketComponent.vue').default);

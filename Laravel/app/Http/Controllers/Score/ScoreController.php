@@ -68,5 +68,15 @@ class ScoreController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function jsex(){
+        return view('score/jsex')->with([
+                'test' => 'text',
+            ]
+        );
+
+    }
 
 }
