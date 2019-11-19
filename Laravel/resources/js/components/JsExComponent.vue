@@ -1,6 +1,8 @@
 <template>
+
     <div>
-<!--    {{ data }}-->
+        <vue-loading v-show="loading" type="spin" color="0000ff" :size="{ width: '50px', height: '50px' }"></vue-loading>
+    {{ data }}
         <div>
             {{ rounds }}
         </div>
@@ -11,17 +13,26 @@
            {{record.round}}R-{{record.card_number}}Game
         </div>
         {{ group }}
-        <div v-for="a in group">
-        {{ a.id }}
+        <div v-for="a, index in group" class="border-bottom">
+            {{ index + 1 }}R
+            <div v-for="b in a">
+
+                {{ b.card_number }}Game
+            </div>
         </div>
     </div>
 </template>
 <script>
+    import { VueLoading } from 'vue-loading-template'
     export default {
+        components: {
+            VueLoading
+        },
         props: {
             test: String,
         },
         data: () => ({
+            loading: true,
             air: 'this is test',
             rounds: '',
             group: [],
@@ -53,7 +64,25 @@
                 // this.group.push(i);
             }
             // alert(roundsArray.length)
+            setTimeout(this.loadingOff, 5000);
 
+
+        },
+        methods: {
+            loadingOff: function (event) {
+                this.loading = false
+            },
+            // makeTournamentGroup: function (){
+            //     this.tournamentGroup = new Array(this.rounds.length);
+            //     alert(this.rounds.length)
+            //     for (var i = 0; i < this.tournamentGroup.length; i++) {
+            //         this.tournamentGroup[i] = []
+            //     }
+            //     for (var i = 0; i < this.tournaments.length; i++) {
+            //         this.tournamentGroup[this.tournaments[i].round - 1].push(this.tournaments[i]);
+            //     }
+            //
+            // }
         },
 
     }

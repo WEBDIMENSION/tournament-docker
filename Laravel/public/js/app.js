@@ -36853,6 +36853,21 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/jquery/test_jquery.js":
+/*!********************************************!*\
+  !*** ./resources/js/jquery/test_jquery.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(function () {
+  $('#btn').on('click', function () {
+    alert("Hello jQuery!!");
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -36865,13 +36880,14 @@ if (token) {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!**************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/jquery/test_jquery.js ./resources/sass/app.scss ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/garaccii/CloudStation/workspace/docker/projects/tournament/Laravel/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/garaccii/CloudStation/workspace/docker/projects/tournament/Laravel/resources/js/jquery/test_jquery.js */"./resources/js/jquery/test_jquery.js");
 module.exports = __webpack_require__(/*! /Users/garaccii/CloudStation/workspace/docker/projects/tournament/Laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

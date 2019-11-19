@@ -33,6 +33,7 @@ Vue.component('socket-component', require('./components/socketComponent.vue').de
 Vue.component('score-notice-component', require('./components/ScoreNoticeConponent.vue').default);
 Vue.component('display-event-component', require('./components/DisplayEventConponent.vue').default);
 Vue.component('display-tournament-component', require('./components/DisplayTournamentConponent.vue').default);
+Vue.component('display-tournament2-component', require('./components/DisplayTournament2Conponent.vue').default);
 Vue.component('score-cups-component', require('./components/ScoreCupsConponent.vue').default);
 
 

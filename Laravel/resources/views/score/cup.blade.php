@@ -21,7 +21,7 @@
 
                 <div class="col-md-9">
                     @if($cup->events)
-                        <ul class="nav nav-tabs border-bottom-0 list-group" id="eventTab" role="eventTablist">
+                        <div class="w100" id="eventTab" role="">
                             @foreach($cup->events as $event)
                                 {{--                                        {{$event->event_name}}--}}
                                 <display-event-component
@@ -45,7 +45,7 @@
                                 {{--                                                                                                       aria-selected="false">{{$event->event_name}}</a>--}}
                                 {{--                                        </li>--}}
                             @endforeach
-                        </ul>
+                        </div>
                     @endif
                 </div>
                 @else
