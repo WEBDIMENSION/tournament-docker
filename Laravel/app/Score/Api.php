@@ -81,8 +81,8 @@ class Api
         return $result_json = json_encode(array('result' => true, 'code' => '000'));
     }
 
-    public function getTournament(Request $request){
-        $tournamentId = $request->tournament_id;
+    public function getTournament( $tournament_id){
+        $tournamentId = $tournament_id;
         return Tournament::where('id', $tournamentId)->get()->first()->toJson();
     }
 

@@ -33,7 +33,7 @@ class ScoreController extends Controller
     }
 
     public function getTournament(Request $request){
-        return $this->api->getTournament($request);
+        return $this->api->getTournament($request->tournament_id);
     }
 
     public function postTournament(Request $request){
