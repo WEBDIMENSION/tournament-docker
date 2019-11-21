@@ -4,11 +4,6 @@ jobs:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
       - image: circleci/mysql:5.7
-    environment:
-      - MYSQL_USER: root
-      - MYSQL_ROOT_PASSWORD: password
-      - MYSQL_DATABASE: laravel
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/repo
 
