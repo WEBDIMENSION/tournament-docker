@@ -2,8 +2,13 @@ ersion: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2-apache-node-browsers
+#      - image: circleci/php:7.2-apache-node-browsers
       - image: circleci/mysql:5.7
+    environment:
+      - APP_DEBUG: true
+      - APP_ENV: testing
+      - APP_KEY: base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     working_directory: ~/repo
 
@@ -22,21 +27,21 @@ jobs:
           command: |
             cp .env.testing .env
 
-      - run:
-          name: Install PHP Extensions
-          command: |
-            sudo docker-php-ext-install zip
-            sudo docker-php-ext-install pdo_mysql
+#      - run:
+#          name: Install PHP Extensions
+#          command: |
+#            sudo docker-php-ext-install zip
+#            sudo docker-php-ext-install pdo_mysql
 
 #      - restore_cache:
 #          keys:
 #            - v1-dependencies-{{ checksum "Laravel/composer.json" }}
 #            - v1-dependencies-
-
-      - run:
-          name: composer install
-          working_directory: Laravel
-          command: composer install -n --prefer-dist
+#
+#      - run:
+#          name: composer install
+#          working_directory: Laravel
+#          command: composer install -n --prefer-dist
 
 #      - save_cache:
 #          paths:
