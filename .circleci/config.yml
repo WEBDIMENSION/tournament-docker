@@ -5,7 +5,9 @@ jobs:
 #      - image: circleci/php:7.2-apache-node-browsers
 #      - image: circleci/mysql:5.6
 #      - image: circleci/php:7.3.3-fpm-node
-      - image: circleci/mysql:8.0-ram
+#      - image: circleci/mysql:8.0-ram
+       - image: circleci/php:7.2
+       - image: circleci/mysql:5.7
 
 
     working_directory: ~/repo
