@@ -21,7 +21,7 @@ jobs:
           environment:
             DOCKERIZE_VERSION: v0.6.1
 
-      - run
+      - run:
           name: Set env
           working_directory: Laravel
           command: |
