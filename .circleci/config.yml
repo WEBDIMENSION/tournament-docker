@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
-      - image: circleci/mysql:5.7
+#      - image: circleci/mysql:5.7
     environment:
       - APP_DEBUG: true
       - APP_ENV: testing
@@ -48,14 +48,14 @@ jobs:
 #            - ./vendor
 #          key: v1-dependencies-{{ checksum "Laravel/composer.json" }}
 
-      - run:
-          name: Wait for db
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+#      - run:
+#          name: Wait for db
+#          command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
-      - run:
-          name: Migration & Seeding
-          working_directory: Laravel
-          command: php artisan migrate --seed
+#      - run:
+#          name: Migration & Seeding
+#          working_directory: Laravel
+#          command: php artisan migrate --seed
 
 #      - run:
 #          name: Make tourament
