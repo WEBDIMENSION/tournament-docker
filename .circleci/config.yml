@@ -9,8 +9,10 @@ jobs:
       - APP_ENV: testing
       - APP_KEY: base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
       - DB_CONNECTION: circleci
-      - DB_DATABASE: laravel
-      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      - MYSQL_USER: root
+      - MYSQL_ROOT_PASSWORD: ''
+      - MYSQL_DATABASE: laravel
 
     working_directory: ~/repo
 
