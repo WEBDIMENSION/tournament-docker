@@ -84,6 +84,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
         ],
+
         'connections' => [
             'circleci' => [
                 'driver' => 'mysql',
