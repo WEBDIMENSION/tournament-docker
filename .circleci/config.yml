@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Migration & Seeding
           working_directory: Laravel
-          command: php artisan migrate:refresh --seed
+          command: php artisan migrate --seed
 
 #      - run:
 #          name: Make tourament
