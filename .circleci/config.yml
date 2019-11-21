@@ -55,7 +55,7 @@ jobs:
           working_directory: Laravel
           command: php artisan command:tournament 1
 
-      - run:
-          name: phpunit
-          working_directory: Laravel
-          command: php ./vendor/bin/phpunit
+#      - run:
+#          name: phpunit
+#          working_directory: Laravel
+#          command: php ./vendor/bin/phpunit
