@@ -3,16 +3,21 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-apache-node-browsers
+        environment:
+          - DB_HOST=127.0.0.1
+          - DB_PORT=3306
+          - DB_DATABASE=circleci
+          - DB_USERNAME=circleci
+          - DB_PASSWORD=circleci
       - image: circleci/mysql:5.7
-    environment:
-      - APP_DEBUG: true
-      - APP_ENV: testing
-      - APP_KEY: base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
-      - DB_CONNECTION: circleci
-      - MYSQL_ALLOW_EMPTY_PASSWORD: yes
-      - MYSQL_USER: root
-      - MYSQL_ROOT_PASSWORD: ''
-      - MYSQL_DATABASE: laravel
+        environment:
+          - APP_DEBUG=true
+          - APP_ENV=testing
+          - APP_KEY=base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
+          - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+          - MYSQL_USER=root
+          - MYSQL_ROOT_PASSWORD=''
+          - MYSQL_DATABASE=laravel
 
     working_directory: ~/repo
 
