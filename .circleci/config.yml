@@ -2,12 +2,19 @@ version: 2
 jobs:
   build:
     docker:
-#      - image: circleci/php:7.2-apache-node-browsers
-#      - image: circleci/mysql:5.6
-#      - image: circleci/php:7.3.3-fpm-node
-#      - image: circleci/mysql:8.0-ram
-       - image: circleci/php:7.2
-       - image: circleci/mysql:5.7
+      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/mysql:5.7
+#        environment:
+#          - DB_CONNECTION: circleci
+#          - MYSQL_ALLOW_EMPTY_PASSWORD: yes
+#          - MYSQL_USER: laravel
+#          - MYSQL_ROOT_PASSWORD: laravel
+#          - MYSQL_DATABASE: laravel
+#          - APP_ENV: testing
+#          - APP_KEY: base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
+#          - APP_DEBUG: true
+#          - APP_URL: http://localhost
+
 
 
     working_directory: ~/repo
@@ -15,54 +22,53 @@ jobs:
     steps:
       - checkout
 
-#      - run:
-#          name: install dockerize
-#          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-#          environment:
-#            DOCKERIZE_VERSION: v0.6.1
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.6.1
 
       - run:
-          name: Set env
-          working_directory: Laravel
+          name: Install PHP Extensions
           command: |
-            cp .env.testing .env
+            sudo docker-php-ext-install zip
+            sudo docker-php-ext-install pdo_mysql
 
-#      - run:
-#          name: Install PHP Extensions
-#          command: |
-#            sudo docker-php-ext-install zip
-#            sudo docker-php-ext-install pdo_mysql
+
 
 #      - restore_cache:
 #          keys:
 #            - v1-dependencies-{{ checksum "Laravel/composer.json" }}
 #            - v1-dependencies-
 #
-#      - run:
-#          name: composer install
-#          working_directory: Laravel
-#          command: composer install -n --prefer-dist
+      - run:
+          name: composer instalsystemctl restart networkl
+          working_directory: Laravel
+          command: |
+            composer install -n --prefer-dist
+#            composer remove -dev laravel/dusk
+#            composer update
 
 #      - save_cache:
 #          paths:
 #            - ./vendor
 #          key: v1-dependencies-{{ checksum "Laravel/composer.json" }}
 
-#      - run:
-#          name: Wait for db
-#          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
-#      - run:
-#          name: Migration & Seeding
-#          working_directory: Laravel
-#          command: php artisan migrate --seed
+      - run:
+          name: Migration & Seeding
+          working_directory: Laravel
+          command: php artisan migrate --seed --force
 
-#      - run:
-#          name: Make tourament
-#          working_directory: Laravel
-#          command: php artisan command:tournament 1
+      - run:
+          name: Make tourament
+          working_directory: Laravel
+          command: php artisan command:tournament 1
 
-#      - run:
-#          name: phpunit
-#          working_directory: Laravel
-#          command: php ./vendor/bin/phpunit
+      - run:
+          name: phpunit
+          working_directory: Laravel
+          command: php ./vendor/bin/phpunit
