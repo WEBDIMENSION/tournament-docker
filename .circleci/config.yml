@@ -2,22 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.2-apache-node-browsers
+      - image: circleci/php:7.2-stretch-node-browsers
+        environment:
+        - APP_DEBUG: true
+        - APP_ENV: testing
+        - APP_KEY: base64:YlIJx6uH3OUb3hxN+PAiJKlC+EGZ2KYi8VHxsfdJpLk=
+        - DEV_FAKER_LOCALE: ja_JP
+        - DB_CONNECTION: circleci
       - image: circleci/mysql:5.7
-#        environment:
-#          - DB_CONNECTION: circleci
-#          - MYSQL_ALLOW_EMPTY_PASSWORD: yes
-#          - MYSQL_USER: laravel
-#          - MYSQL_ROOT_PASSWORD: laravel
-#          - MYSQL_DATABASE: laravel
-#          - APP_ENV: testing
-#          - APP_KEY: base64:arPZRDCovVqsRNiABCSSfxnmI5woFRgEivkWzWQN0Js=
-#          - APP_DEBUG: true
-#          - APP_URL: http://localhost
+        environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD: true
+        - MYSQL_ROOT_PASSWORD: root
+        - MYSQL_DATABASE: laravel
+        - MYSQL_USER: laravel
+        - MYSQL_PASSWORD: laravel
 
-
-
-    working_directory: ~/repo
+    working_directory: ~/repo/Laravel
 
     steps:
       - checkout
@@ -30,29 +30,22 @@ jobs:
 
       - run:
           name: Install PHP Extensions
-          command: |
-            sudo docker-php-ext-install zip
-            sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install pdo_mysql
 
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "laravel/composer.json" }}
+            - v1-dependencies-
 
-
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "Laravel/composer.json" }}
-#            - v1-dependencies-
-#
       - run:
-          name: composer instalsystemctl restart networkl
+          name: composer install
           working_directory: Laravel
-          command: |
-            composer install -n --prefer-dist
-#            composer remove -dev laravel/dusk
-#            composer update
+          command: composer install -n --prefer-dist
 
-#      - save_cache:
-#          paths:
-#            - ./vendor
-#          key: v1-dependencies-{{ checksum "Laravel/composer.json" }}
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "laravel/composer.json" }}
 
       - run:
           name: Wait for db
@@ -61,14 +54,15 @@ jobs:
       - run:
           name: Migration & Seeding
           working_directory: Laravel
-          command: php artisan migrate --seed --force
+          command: php artisan migrate --seed
 
       - run:
-          name: Make tourament
+          name:  command
           working_directory: Laravel
           command: php artisan command:tournament 1
 
       - run:
-          name: phpunit
+          name:  phpunit
           working_directory: Laravel
-          command: php ./vendor/bin/phpunit
+          command: ./vendor/bin/phpunit
+
