@@ -17,7 +17,7 @@ jobs:
         - MYSQL_USER: laravel
         - MYSQL_PASSWORD: laravel
 
-    working_directory: ~/repo/Laravel
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-{{ checksum "laravel/composer.json" }}
             - v1-dependencies-
 
       - run:
@@ -45,7 +45,7 @@ jobs:
       - save_cache:
           paths:
             - ./vendor
-          key: v1-dependencies-{{ checksum "composer.json" }}
+          key: v1-dependencies-{{ checksum "laravel/composer.json" }}
 
       - run:
           name: Wait for db
