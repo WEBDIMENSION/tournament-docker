@@ -20,7 +20,6 @@ jobs:
         - MYSQL_USER: laravel
         - MYSQL_PASSWORD: laravel
       - image: node:10
-
       - image: redis:latest
 
 
@@ -53,24 +52,19 @@ jobs:
           name: npm install
           working_directory: Laravel/node
           command: npm install
-          command: stat /home/circleci/repo/docker/node/certs/server.key
 
       - run:
           name: start node server
           working_directory: Laravel/node
           command: npm start
           environment:
-            CERTS_DIR_PATH: /home/circleci/repo/docker/node/certs/
-            REDIS_PORT: 6379
+            - CERTS_DIR_PATH: /home/circleci/repo/docker/node/certs/
+            - REDIS_PORT: 6379
 
       - run:
           name: composer install
           working_directory: Laravel
           command: composer install -n --prefer-dist
-
-      - run:
-          name: start redis server
-          command: redis-server --appendonly yes
 
       - save_cache:
           paths:

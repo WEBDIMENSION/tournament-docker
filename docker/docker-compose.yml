@@ -67,7 +67,7 @@ services:
       - ${REDIS_PORT}:6379
     volumes:
       - ./redis/data:/data
-    command: "redis-server --appendonly yes"
+#    command: "redis-server --appendonly yes"
   node:
     image: node:10
     container_name: tournament_node
