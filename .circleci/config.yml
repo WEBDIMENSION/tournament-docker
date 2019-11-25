@@ -11,6 +11,7 @@ jobs:
         - DEV_FAKER_LOCALE: ja_JP
         - DB_CONNECTION: circleci
         - MIX_NODE_HOST: tournament.local
+        - MIX_NODE_INTERNAL_HOST: localhost
         - MIX_NODE_PORT: 3000
         - REDIS_PORT: 6379
       - image: circleci/mysql:5.7
