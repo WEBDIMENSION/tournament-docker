@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.2-stretch-node-browsers
         environment:
         - APP_DEBUG: true
-        - APP_ENV: testing
+        - APP_ENV: local
         - APP_KEY: base64:YlIJx6uH3OUb3hxN+PAiJKlC+EGZ2KYi8VHxsfdJpLk=
         - DEV_FAKER_LOCALE: ja_JP
         - DB_CONNECTION: circleci
@@ -21,8 +21,8 @@ jobs:
         - MYSQL_PASSWORD: laravel
       - image: node:10
       - image: redis:latest
-#      - image: selenium/hub:3.141.59-vanadium
-#        container_name: selenium-hub
+      - image: selenium/hub:3.141.59-vanadium
+        container_name: selenium-hub
 #      - image: selenium/node-chrome:3.141.59-vanadium
 #        environment:
 #        - HUB_HOST: 0.0.0.0
@@ -31,7 +31,9 @@ jobs:
     working_directory: ~/repo
 
     steps:
-
+      - run:
+          command: chromedriver
+          background: true
 
       - checkout
 
@@ -63,7 +65,8 @@ jobs:
       - run:
           name: start node server
           working_directory: Laravel/node
-          command: node ./bin/node_server.js &
+          command: node ./bin/node_server.js
+          background: true
           environment:
             - CERTS_DIR_PATH:  /home/circleci/repo/docker/node/certs/
             - REDIS_HOST: 0.0.0.0
@@ -99,15 +102,21 @@ jobs:
           command: php artisan command:tournament 1
 
       - run:
-          name: Install Chrome Driver
-          working_directory: Laravel
-          command: php artisan dusk:chrome-driver --all
-#
-      - run:
           name: Start Chrome Driver
           working_directory: Laravel
-          command: chmod 775 .vendor/laravel/dusk/bin/* && ./vendor/laravel/dusk/bin/chromedriver-linux
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
           background: true
+
+#      - run:
+#          name: Install Chrome Driver
+#          working_directory: Laravel
+#          command: php artisan dusk:chrome-driver
+##
+#      - run:
+#          name: Start Chrome Driver
+#          working_directory: Laravel
+#          command: chmod 775 .vendor/laravel/dusk/bin/* && ./vendor/laravel/dusk/bin/chromedriver-linux
+#          background: true
 
       - run:
          name: Run Laravel Server
