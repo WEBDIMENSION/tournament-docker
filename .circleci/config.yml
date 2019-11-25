@@ -106,8 +106,7 @@ jobs:
       - run:
           name: Start Chrome Driver
           working_directory: Laravel
-          command: chmod 775 .vendor/laravel/dusk/bin/*
-          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          command: chmod 775 .vendor/laravel/dusk/bin/* && ./vendor/laravel/dusk/bin/chromedriver-linux
           background: true
 
       - run:
