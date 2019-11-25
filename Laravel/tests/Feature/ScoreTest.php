@@ -23,4 +23,18 @@ class ScoreTest extends TestCase
         $objRet = json_decode($ret);
         $this->assertNotNull($objRet->round);
     }
+
+    public function testNodeConnect()
+    {
+        $host = env('MIX_NODE_INTERNAL_HOST');
+        $port = env('MIX_NODE_PORT');
+        $this->assertTrue(true);
+//        echo 'https://'.$host.':'.$port;
+//        $response = $this->get('https://'.$host.':'.$port);
+//        $response->assertSee('Send');
+//        $response->assertStatus(200);
+//        $response = $this->get('https://0.0.0.0:3007');
+//        $response->assertStatus(200);
+    }
+
 }

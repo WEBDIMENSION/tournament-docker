@@ -21,11 +21,18 @@ jobs:
         - MYSQL_PASSWORD: laravel
       - image: node:10
       - image: redis:latest
-
+#      - image: selenium/hub:3.141.59-vanadium
+#        container_name: selenium-hub
+#      - image: selenium/node-chrome:3.141.59-vanadium
+#        environment:
+#        - HUB_HOST: 0.0.0.0
+#        - HUB_PORT: 4444
 
     working_directory: ~/repo
 
     steps:
+
+
       - checkout
 
       - run:
@@ -92,7 +99,29 @@ jobs:
           command: php artisan command:tournament 1
 
       - run:
+          name: Install Chrome Driver
+          working_directory: Laravel
+          command: php artisan dusk:chrome-driver --all
+#
+      - run:
+          name: Start Chrome Driver
+          working_directory: Laravel
+          command: chmod 775 .vendor/laravel/dusk/bin/*
+          command: ./vendor/laravel/dusk/bin/chromedriver-linux
+          background: true
+
+      - run:
+         name: Run Laravel Server
+         working_directory: Laravel
+         command: php artisan serve
+         background: true
+
+      - run:
           name:  phpunit
           working_directory: Laravel
           command: ./vendor/bin/phpunit
-
+#
+      - run:
+          name:  dusk
+          working_directory: Laravel
+          command: php artisan dusk

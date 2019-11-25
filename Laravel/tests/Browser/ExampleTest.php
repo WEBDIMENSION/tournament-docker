@@ -20,6 +20,13 @@ class ExampleTest extends DuskTestCase
                 ->assertSee('today');
             $browser->visit('/login')
                     ->assertSee('Password');
+//            echo $value = config('app.MIX_NODE_PORT');
+//            echo 'test';
+            $host = env('MIX_NODE_INTERNAL_HOST');
+            $port = env('MIX_NODE_PORT');
+
+            $browser->visit('https://'.$host.':'.$port)
+                ->assertSee('Send');
         });
 //        $this->browse(function (Browser $browser) {
 //            $browser->visit('/login')
