@@ -14,7 +14,7 @@ const sslOptions = {
 var server = http.createServer(sslOptions, app);
 // const io = require('socket.io')(http);
 var io = socketIo.listen(server);
-io.adapter(redis({ host: 'redis', port: process.env.REDIS_PORT }));
+io.adapter(redis({ host: process.env.REDIS_HOST, port: process.env.REDIS_PORT }));
 app.get(`/`, (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });

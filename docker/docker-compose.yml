@@ -77,6 +77,7 @@ services:
     working_dir: /node
     environment:
       CERTS_DIR_PATH: /certs/
+      REDIS_HOST: ${REDIS_HOST}
       REDIS_PORT: ${REDIS_PORT}
     ports:
       - ${MIX_NODE_PORT}:3000

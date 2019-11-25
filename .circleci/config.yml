@@ -56,9 +56,10 @@ jobs:
       - run:
           name: start node server
           working_directory: Laravel/node
-          command: npm start
+          command: node ./bin/node_server.js &
           environment:
-            - CERTS_DIR_PATH: /home/circleci/repo/docker/node/certs/
+            - CERTS_DIR_PATH:  /home/circleci/repo/docker/node/certs/
+            - REDIS_HOST: 0.0.0.0
             - REDIS_PORT: 6379
 
       - run:
