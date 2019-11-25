@@ -9,6 +9,9 @@ jobs:
         - APP_KEY: base64:YlIJx6uH3OUb3hxN+PAiJKlC+EGZ2KYi8VHxsfdJpLk=
         - DEV_FAKER_LOCALE: ja_JP
         - DB_CONNECTION: circleci
+        - MIX_NODE_HOST: tournament.local
+        - MIX_NODE_PORT: 3000
+        - REDIS_PORT: 6379
       - image: circleci/mysql:5.7
         environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD: true
@@ -16,6 +19,10 @@ jobs:
         - MYSQL_DATABASE: laravel
         - MYSQL_USER: laravel
         - MYSQL_PASSWORD: laravel
+      - image: node:10
+
+      - image: redis:latest
+
 
     working_directory: ~/repo
 
@@ -37,15 +44,43 @@ jobs:
             - v1-dependencies-{{ checksum "Laravel/composer.json" }}
             - v1-dependencies-
 
+      - restore_cache:
+          keys:
+            - v1-node-{{ checksum "Laravel/node/package.json" }}
+            - v1-node-
+
+      - run:
+          name: npm install
+          working_directory: Laravel/node
+          command: npm install
+          command: stat /home/circleci/repo/docker/node/certs/server.key
+
+      - run:
+          name: start node server
+          working_directory: Laravel/node
+          command: npm start
+          environment:
+            CERTS_DIR_PATH: /home/circleci/repo/docker/node/certs/
+            REDIS_PORT: 6379
+
       - run:
           name: composer install
           working_directory: Laravel
           command: composer install -n --prefer-dist
 
+      - run:
+          name: start redis server
+          command: redis-server --appendonly yes
+
       - save_cache:
           paths:
-            - ./vendor
+            - ./Laravel/vendor
           key: v1-dependencies-{{ checksum "Laravel/composer.json" }}
+
+      - save_cache:
+          paths:
+            - ./Laravel/node/node_modules
+          key: v1-node-{{ checksum "Laravel/node/package.json" }}
 
       - run:
           name: Wait for db
@@ -57,7 +92,7 @@ jobs:
           command: php artisan migrate --seed
 
       - run:
-          name:  command
+          name:  Artisan command
           working_directory: Laravel
           command: php artisan command:tournament 1
 

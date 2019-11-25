@@ -75,6 +75,9 @@ services:
       - ../Laravel/node:/node
       - ./node/certs:/certs
     working_dir: /node
+    environment:
+      CERTS_DIR_PATH: /certs/
+      REDIS_PORT: ${REDIS_PORT}
     ports:
       - ${MIX_NODE_PORT}:3000
     command: bash -c  "npm install && npm start"
