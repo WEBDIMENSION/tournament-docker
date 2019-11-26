@@ -35,42 +35,42 @@
 </style>
 
 <script>
-  export default {
-    data: () => ({
-      name: '',
-      message: '',
-      from_api_name: '',
-      from_api_message: '',
-      messages: [],
-      show: false,
-      socket: io(process.env.MIX_NODE_HOST + ':' + process.env.MIX_NODE_PORT),
-    }),
-    mounted: function () {
-      this.socket.on('LaravelGetScoreMess', (data) => {
-        var data = JSON.parse(data);
-        // this.messages = [...this.messages, data];
-        var winnerText = '';
-        for (let i = 0; i < data.winner.length; i++) {
-          winnerText += '<span>' + data.winner[i] + '</span>'
-          // console.log(obj.winner[i])
-        }
-        // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
-          this.messages = [this.messages, {score: data['score'], winner: winnerText}];
-        console.log(data.name);
-        console.log(data.message);
+    export default {
+        data: () => ({
+            name: '',
+            message: '',
+            from_api_name: '',
+            from_api_message: '',
+            messages: [],
+            show: false,
+            socket: io(process.env.MIX_NODE_HOST + ':' + process.env.MIX_NODE_PORT),
+        }),
+        mounted: function () {
+            this.socket.on('LaravelGetScoreMess', (data) => {
+                var data = JSON.parse(data);
+                // this.messages = [...this.messages, data];
+                var winnerText = '';
+                for (let i = 0; i < data.winner.length; i++) {
+                    winnerText += '<span>' + data.winner[i] + '</span>'
+                    // console.log(obj.winner[i])
+                }
+                // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
+                this.messages = [this.messages, {score: data['score'], winner: winnerText}];
+                console.log(data.name);
+                console.log(data.message);
 
-        // this.from_api_name = data.name,
-        //   this.from_api_message = data.message,
-        this.show = true;
-        setTimeout(this.noticeClose, 5000);
-      })
-    },
-    methods: {
-      noticeClose: function () {
-        this.show = false;
-      }
+                // this.from_api_name = data.name,
+                //   this.from_api_message = data.message,
+                this.show = true;
+                setTimeout(this.noticeClose, 5000);
+            })
+        },
+        methods: {
+            noticeClose: function () {
+                this.show = false;
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>

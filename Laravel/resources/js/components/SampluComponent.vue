@@ -3,12 +3,12 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      message: String,
-    },
-    mounted() {
-      console.log('Sample mounted.')
-    },
-  }
+    export default {
+        props: {
+            message: String,
+        },
+        mounted() {
+            console.log('Sample mounted.')
+        },
+    }
 </script>

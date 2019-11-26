@@ -1844,6 +1844,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     cupId: String,
@@ -2084,8 +2085,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2156,7 +2157,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_1__["VueLoading"]
+    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_0__["VueLoading"]
   },
   props: {
     cupId: String,
@@ -2345,8 +2346,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
-/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-loading-template */ "./node_modules/vue-loading-template/dist/vueLoading.common.js");
+/* harmony import */ var vue_loading_template__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_loading_template__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2374,7 +2375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_1__["VueLoading"]
+    VueLoading: vue_loading_template__WEBPACK_IMPORTED_MODULE_0__["VueLoading"]
   },
   props: {
     test: String
@@ -14367,9 +14368,9 @@ var render = function() {
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "row col-md-5 d-inline-block pl-5" }, [
           _vm._v(
-            "\n                    Winnner : " +
+            "\n                Winnner : " +
               _vm._s(_vm.getData.winner) +
-              "\n                    "
+              "\n                "
           ),
           _vm.getData.player_a_id !== null
             ? _c("div", {}, [
@@ -14404,16 +14405,16 @@ var render = function() {
                   { staticClass: "form-check-label", attrs: { for: "radio1" } },
                   [
                     _vm._v(
-                      "\n                            " +
+                      "\n                        " +
                         _vm._s(_vm.getData.player_a_name) +
-                        "\n                        "
+                        "\n                    "
                     )
                   ]
                 )
               ])
             : _c("div", [
                 _vm._v(
-                  "\n                        Not regist yet.\n                    "
+                  "\n                    Not regist yet.\n                "
                 )
               ]),
           _vm._v(" "),
@@ -14450,22 +14451,22 @@ var render = function() {
                   { staticClass: "form-check-label", attrs: { for: "radio1" } },
                   [
                     _vm._v(
-                      "\n                            " +
+                      "\n                        " +
                         _vm._s(_vm.getData.player_b_name) +
-                        "\n                        "
+                        "\n                    "
                     )
                   ]
                 )
               ])
             : _c("div", [
                 _vm._v(
-                  "\n                        Not regist yet.\n                    "
+                  "\n                    Not regist yet.\n                "
                 )
               ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-3 d-inline-block" }, [
-          _vm._v("\n                    Score\n                    "),
+          _vm._v("\n                Score\n                "),
           _c("input", {
             directives: [
               {
@@ -14889,7 +14890,7 @@ var render = function() {
           size: { width: "50px", height: "50px" }
         }
       }),
-      _vm._v("\n" + _vm._s(_vm.data) + "\n    "),
+      _vm._v("\n    " + _vm._s(_vm.data) + "\n    "),
       _c("div", [_vm._v("\n        " + _vm._s(_vm.rounds) + "\n    ")]),
       _vm._v(" "),
       _c("div", [
@@ -14899,7 +14900,7 @@ var render = function() {
       _vm._l(_vm.data, function(record) {
         return _c("div", [
           _vm._v(
-            "\n       " +
+            "\n        " +
               _vm._s(record.round) +
               "R-" +
               _vm._s(record.card_number) +
@@ -15074,7 +15075,7 @@ var render = function() {
                   staticClass: "btn btn-secondary",
                   attrs: { type: "button", "data-dismiss": "modal" }
                 },
-                [_vm._v("閉じる\n                    ")]
+                [_vm._v("閉じる\n                ")]
               )
             ])
           ])
@@ -15107,7 +15108,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body row" }, [
       _c("div", { staticClass: "col-md-4" }, [
-        _vm._v("\n                        Score\n")
+        _vm._v("\n                    Score\n                    ")
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-4" }, [
@@ -57326,12 +57327,12 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-// require('./bootstrap');
+// require('./bootstrap')
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.config.silent = true;
 window.vuetify = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js"); // window.ioc = require('socket.io');
+window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js"); // window.ioc = require('socket.io')
 
 /**
  * The following block of code may be used to automatically register your
@@ -57340,8 +57341,8 @@ window.io = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.i
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('sample-component', __webpack_require__(/*! ./components/SampluComponent.vue */ "./resources/js/components/SampluComponent.vue")["default"]);
@@ -57364,11 +57365,11 @@ var app = new Vue({
   el: '#app'
 }); // const app2 = new Vue({
 //   el: '#sample'
-// });
+// })
 //
 // const score = new Vue({
 //   el: '#weather'
-// });
+// })
 
 /***/ }),
 

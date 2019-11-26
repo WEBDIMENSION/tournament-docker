@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-md>
         <h2>RealTimeChat</h2>
-        <div class="row" v-if="show">
+        <div v-if="show" class="row" >
             <p class="mr-auto">name:{{ from_api_name}}</p>
             <p class="v">mess:{{ from_api_message }}</p>
         </div>
@@ -74,91 +74,91 @@
     }
 </style>
 <script>
-  export default {
-    // socket : io('laravel.centos75.exp:3000'),
-    data: () => ({
-      name: '',
-      message: '',
-      from_api_name: '',
-      from_api_message: '',
-      messages: [],
-      show: false,
-      socket: io('laravel.centos75.exp:3000'),
-    }),
-    methods: {
-      sendMessage(e) {
-        e.preventDefault();
-        this.socket.emit('LaravelPostScoreMess',
-          '{"name":"' + this.name + '","message":"' + this.message + '"}'
-        );
-        this.message = ''
-      },
-    },
-    mounted: function () {
-      this.socket.on('LaravelGetScoreMess', (data) => {
-        var data =JSON.parse(data);
-        this.messages = [...this.messages, data];
-        console.log(data.name);
-        console.log(data.message);
-        this.from_api_name = data.name,
-          this.from_api_message = data.message,
-          this.show = true
-          // setTimeout(this.show = false, 3000);
-          // console.log('pull!');
-      }),
-        axios.get('/api/score/u/jason/13143214')
-          .then(function (res) {
-            // console.log('socket mounted.')
-            // console.log(res.data[0]['result']);
-            if (res.data[0]['result']) {
-              console.log('in if start', res.data[0]['result']);
-              this.name = 'aiuxxxxx', //初期テストデータ
-                this.message = 'messxxxxx',//初期テストデータ
+    export default {
+        // socket : io('laravel.centos75.exp:3000'),
+        data: () => ({
+            name: '',
+            message: '',
+            from_api_name: '',
+            from_api_message: '',
+            messages: [],
+            show: false,
+            socket: io('laravel.centos75.exp:3000'),
+        }),
+        methods: {
+            sendMessage(e) {
+                e.preventDefault();
                 this.socket.emit('LaravelPostScoreMess',
-                  // {name: this.name, message: this.message}
-                  // {name: this.name, message: this.message}
-                  '{"name":"sample","message":"From Sample"}'
+                    '{"name":"' + this.name + '","message":"' + this.message + '"}'
                 );
-              console.log('connected!');
-              console.log(this.name);
-              console.log(this.message);
-              console.log('in if end');
-            }
-            console.log('socket mounted.');
-            // console.log(res.status, name);
-            // => 200, "OK", { message: "You just sent the data!" }
-          }.bind(this))
+                this.message = ''
+            },
+        },
+        mounted: function () {
+            this.socket.on('LaravelGetScoreMess', (data) => {
+                var data = JSON.parse(data);
+                this.messages = [...this.messages, data];
+                console.log(data.name);
+                console.log(data.message);
+                this.from_api_name = data.name,
+                    this.from_api_message = data.message,
+                    this.show = true
+                // setTimeout(this.show = false, 3000);
+                // console.log('pull!');
+            }),
+                axios.get('/api/score/u/jason/13143214')
+                    .then(function (res) {
+                        // console.log('socket mounted.')
+                        // console.log(res.data[0]['result']);
+                        if (res.data[0]['result']) {
+                            console.log('in if start', res.data[0]['result']);
+                            this.name = 'aiuxxxxx', //初期テストデータ
+                                this.message = 'messxxxxx',//初期テストデータ
+                                this.socket.emit('LaravelPostScoreMess',
+                                    // {name: this.name, message: this.message}
+                                    // {name: this.name, message: this.message}
+                                    '{"name":"sample","message":"From Sample"}'
+                                );
+                            console.log('connected!');
+                            console.log(this.name);
+                            console.log(this.message);
+                            console.log('in if end');
+                        }
+                        console.log('socket mounted.');
+                        // console.log(res.status, name);
+                        // => 200, "OK", { message: "You just sent the data!" }
+                    }.bind(this))
+        }
+
+        // console.log(name,message);
+
+        // .then(res => {
+        //   // this.result = res.data[0]['result']
+        //   if(res.data[0]['result'] === true){
+        //     this.socket.emit('POST_MESSAGE', {
+        //       name: 'bot',
+        //       message: 'ret true'
+        //     });
+        //     this.message = ''
+        //   }
+        // winner = res.data[0]['winner']
+        // score = res.data[1]['score']
+        //   sendMessage(e) {
+        //     e.preventDefault();
+        //     this.socket.emit('POST_MESSAGE', {
+        //       name: this.name,
+        //       message: this.message
+        //     });
+        //     this.message = ''
+        //   },
+        // },
+        // mounted(){
+        //   // 投稿されたデータの取得
+        //   this.socket.on('MESSAGE', (data) => {
+        //     this.messages = [...this.messages, data];
+        //   })
+        // },
     }
-
-    // console.log(name,message);
-
-    // .then(res => {
-    //   // this.result = res.data[0]['result']
-    //   if(res.data[0]['result'] === true){
-    //     this.socket.emit('POST_MESSAGE', {
-    //       name: 'bot',
-    //       message: 'ret true'
-    //     });
-    //     this.message = ''
-    //   }
-    // winner = res.data[0]['winner']
-    // score = res.data[1]['score']
-    //   sendMessage(e) {
-    //     e.preventDefault();
-    //     this.socket.emit('POST_MESSAGE', {
-    //       name: this.name,
-    //       message: this.message
-    //     });
-    //     this.message = ''
-    //   },
-    // },
-    // mounted(){
-    //   // 投稿されたデータの取得
-    //   this.socket.on('MESSAGE', (data) => {
-    //     this.messages = [...this.messages, data];
-    //   })
-    // },
-  }
 </script>
 
 <style scoped>

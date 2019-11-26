@@ -5,7 +5,8 @@
         <!--        {{ rounds.length }}-->
         <div class="">
             <!--        <li class="nav-item bg-primary mb-2 list-group-item-action " v-on:click="getTournaments">-->
-                <span class="col-md-7 d-inline-block">{{ eventName }}</span><span class="col-md-5 text-right d-inline-block">Player数:{{ playersCount }} SetCount:{{ setCount }} TieBeak:{{ tiebreak }}</span></a>
+            <span class="col-md-7 d-inline-block">{{ eventName }}</span><span
+            class="col-md-5 text-right d-inline-block">Player数:{{ playersCount }} SetCount:{{ setCount }} TieBeak:{{ tiebreak }}</span></a>
         </div>
         <main class="p-3">
             <ul class="nav nav-tabs">

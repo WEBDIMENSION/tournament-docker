@@ -8,7 +8,7 @@
             </div>
             <div v-show="!loading">
                 <h3>{{ getData.round }}Round - {{getData.card_number}} Game</h3>
-                <template v-if="!isScored" >
+                <template v-if="!isScored">
                     <div class="row col-md-5 d-inline-block">
                         Winnner : {{ getData.winner }}
                         <div class="form-check" v-if="getData.player_a_id !== null">
@@ -136,7 +136,7 @@
                         this.getData = response.data
                         console.log(this.getData)
                         // alert(this.getData)
-                        if(this.getData.score !== null){
+                        if (this.getData.score !== null) {
                             this.isScored = true
                         }
                     })
@@ -181,7 +181,7 @@
                     // console.log(data.roundNumber);
                     // console.log(data.cardNumber);
                     this.updateFlg = true
-                    setTimeout( this.getTournament,2000)
+                    setTimeout(this.getTournament, 2000)
 
 
                 }

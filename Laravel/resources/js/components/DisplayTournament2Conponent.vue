@@ -3,7 +3,7 @@
         <div class="pb-3 mb-3 border-bottom border-light">
             <!--        <div v-if="getData.player_a_id !== null" class="pb-3 mb-3 border-bottom border-light">-->
             <h3>{{ getData.round }}Round - {{getData.card_number}} Game</h3>
-<!--            <div>cup Name : {{ cupName}} - EventName : {{ eventName }}</div>-->
+            <!--            <div>cup Name : {{ cupName}} - EventName : {{ eventName }}</div>-->
             <div class="row">
                 <div class="row col-md-5 d-inline-block pl-5">
                     Winnner : {{ getData.winner }}
@@ -103,34 +103,34 @@
         },
         mounted: function () {
             this.getTournament(),
-            this.socket.on('LaravelGetScoreMess', (data) => {
-                var data = JSON.parse(data);
-                // this.messages = [...this.messages, data];
-                var winnerText = '';
-                for (let i = 0; i < data.winner.length; i++) {
-                    winnerText += '<span>' + data.winner[i] + '</span>'
-                    // console.log(obj.winner[i])
-                }
-                // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
-                this.messages = [this.messages, {score: data['score'], winner: winnerText}];
-                if(this.tournament.id == data.tournamentId) {
-                    // console.log(data.tournamentId);
-                    console.log(data.cupId);
-                    console.log(data.cupName);
-                    console.log(data.eventId);
-                    console.log(data.eventName);
-                    console.log(data.roundNumber);
-                    console.log(data.cardNumber);
-                    this.getTournament()
-                }
-                // console.log(data.message);
+                this.socket.on('LaravelGetScoreMess', (data) => {
+                    var data = JSON.parse(data);
+                    // this.messages = [...this.messages, data];
+                    var winnerText = '';
+                    for (let i = 0; i < data.winner.length; i++) {
+                        winnerText += '<span>' + data.winner[i] + '</span>'
+                        // console.log(obj.winner[i])
+                    }
+                    // this.messages = [...this.messages, {score: data['score'], winner: winnerText}];
+                    this.messages = [this.messages, {score: data['score'], winner: winnerText}];
+                    if (this.tournament.id == data.tournamentId) {
+                        // console.log(data.tournamentId);
+                        console.log(data.cupId);
+                        console.log(data.cupName);
+                        console.log(data.eventId);
+                        console.log(data.eventName);
+                        console.log(data.roundNumber);
+                        console.log(data.cardNumber);
+                        this.getTournament()
+                    }
+                    // console.log(data.message);
 
-                // this.from_api_name = data.name,
-                //   this.from_api_message = data.message,
-                // this.show = true;
-                // setTimeout(this.noticeClose, 5000);
-                // console.log('pull!');
-            })
+                    // this.from_api_name = data.name,
+                    //   this.from_api_message = data.message,
+                    // this.show = true;
+                    // setTimeout(this.noticeClose, 5000);
+                    // console.log('pull!');
+                })
         }
     }
 

@@ -1,8 +1,8 @@
 <template>
-
     <div>
-        <vue-loading v-show="loading" type="spin" color="0000ff" :size="{ width: '50px', height: '50px' }"></vue-loading>
-    {{ data }}
+        <vue-loading v-show="loading" type="spin" color="0000ff"
+                     :size="{ width: '50px', height: '50px' }"></vue-loading>
+        {{ data }}
         <div>
             {{ rounds }}
         </div>
@@ -10,7 +10,7 @@
             RoundCount : {{ rounds.length }}
         </div>
         <div v-for="record in data">
-           {{record.round}}R-{{record.card_number}}Game
+            {{record.round}}R-{{record.card_number}}Game
         </div>
         {{ group }}
         <div v-for="a, index in group" class="border-bottom">
@@ -23,7 +23,8 @@
     </div>
 </template>
 <script>
-    import { VueLoading } from 'vue-loading-template'
+    import {VueLoading} from 'vue-loading-template'
+
     export default {
         components: {
             VueLoading
