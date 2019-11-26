@@ -39,26 +39,25 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         if (env('APP_ENV') == 'local') {
-            $options = (new ChromeOptions)->addArguments([
-                '--disable-gpu',
-                '--headless',
-            ]);
+            $options = (new ChromeOptions())->addArguments(
+                ['--disable-gpu', '--headless',]
+            );
             return RemoteWebDriver::create(
-                'http://selenium-hub:4444/wd/hub', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+                'http://selenium-hub:4444/wd/hub',
+                DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options)
             );
         } elseif (env('APP_ENV') == 'testing') {
-            $options = (new ChromeOptions)->addArguments([
-                '--disable-gpu',
-                '--headless',
-                '--window-size=1920,1080',
-           ]);
+            $options = (new ChromeOptions())->addArguments(
+                [
+                    '--disable-gpu',
+                    '--headless',
+                    '--window-size=1920,1080',
+                ]
+            );
+//                'http://localhost:9515', ]DesiredCapabilities::chrome()->setCapability(
             return RemoteWebDriver::create(
-//                'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                'http://localhost:4444/wd/hub', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+                'http://localhost:4444/wd/hub',
+                DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options)
             );
         }
     }

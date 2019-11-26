@@ -121,6 +121,11 @@ jobs:
 #          background: true
 
       - run:
+          name:  phpcs
+          working_directory: Laravel
+          command: ./vendor/bin/phpcs --standard=phpcs.xml ./
+
+      - run:
          name: Run Laravel Server
          working_directory: Laravel
          command: php artisan serve

@@ -12,13 +12,8 @@ class Cup extends Model
         return $this->hasMany('\App\Event');
     }
 
-    public function events_count()
+    public function eventsCount()
     {
         return $events_count = Event::where('cup_id', $this->id)->count();
     }
-
-//    public function getCup($cup_number)
-//    {
-//        return $cup = Cup::where('cup_number',$cup_number)->get()->first();
-//    }
 }

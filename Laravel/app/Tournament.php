@@ -18,10 +18,6 @@ class Tournament extends Model
 //    }
     public function players()
     {
-        return $this->hasMany('\App\Player','id','player_a_id');
+        return $this->hasMany('\App\Player', 'id', 'player_a_id');
     }
-
-
-
 }
-

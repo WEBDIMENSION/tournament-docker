@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
- //
- public function index()
- {
-	echo 'chat';
- }
+    //
+    public function index()
+    {
+        echo 'chat';
+    }
 }

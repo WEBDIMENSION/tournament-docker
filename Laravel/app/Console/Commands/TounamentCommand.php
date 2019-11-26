@@ -58,12 +58,12 @@ class TounamentCommand extends Command
                     $card_cnt++;
                     $card = new Tournament();
                     $card->event_id = $event_id;
-                    $card->round = $i+1;
+                    $card->round = $i + 1;
                     $card->card_number = $card_cnt;
                     $card->player_a_id = $players[$j]->id;
                     $card->player_b_id = $players[$j + 1]->id;
-                    $card->player_a_name = $players[$j]->player_name . ' : '. $players[$j]->partner_name;
-                    $card->player_b_name = $players[$j + 1]->player_name . ' : '. $players[$j + 1]->partner_name;
+                    $card->player_a_name = $players[$j]->player_name . ' : ' . $players[$j]->partner_name;
+                    $card->player_b_name = $players[$j + 1]->player_name . ' : ' . $players[$j + 1]->partner_name;
                     $card->save();
                 }
             } else {
@@ -71,13 +71,11 @@ class TounamentCommand extends Command
                     $card_cnt++;
                     $card = new Tournament();
                     $card->event_id = $event_id;
-                    $card->round = $i+1;
+                    $card->round = $i + 1;
                     $card->card_number = $card_cnt;
                     $card->save();
                 }
-
             }
-
         }
     }
 }

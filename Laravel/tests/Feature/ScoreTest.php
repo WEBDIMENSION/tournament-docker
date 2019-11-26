@@ -16,8 +16,8 @@ class ScoreTest extends TestCase
      */
     public function testGetTournament()
     {
-        $api = new Api;
-        $requestData = ['tournament_id'=>1];
+        $api = new Api();
+        $requestData = ['tournament_id' => 1];
         $ret = $api->getTournament(json_decode(json_encode($requestData))->tournament_id);
         $this->assertNotNull($ret);
         $objRet = json_decode($ret);
@@ -36,5 +36,4 @@ class ScoreTest extends TestCase
 //        $response = $this->get('https://0.0.0.0:3007');
 //        $response->assertStatus(200);
     }
-
 }

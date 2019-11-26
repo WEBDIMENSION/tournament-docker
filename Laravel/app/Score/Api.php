@@ -64,15 +64,15 @@ class Api
 //
         $redis = Redis::connection();
         $emitter = new \SocketIO\Emitter($redis);
-        $winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();;
+        $winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();
         $data = array(
-            'cupId'=> $cupId,
-            'cupName'=> $cupName,
-            'eventId'=> $eventId,
-            'eventName'=> $eventName,
-            'roundNumber'=> $roundNumber,
-            'cardNumber'=> $cardNumber,
-            'tournamentId'=> $tournamentId,
+            'cupId' => $cupId,
+            'cupName' => $cupName,
+            'eventId' => $eventId,
+            'eventName' => $eventName,
+            'roundNumber' => $roundNumber,
+            'cardNumber' => $cardNumber,
+            'tournamentId' => $tournamentId,
             'winner' => array($winner->player_name, $winner->partner_name),
             'score' => $score
         );
@@ -81,10 +81,9 @@ class Api
         return $result_json = json_encode(array('result' => true, 'code' => '000'));
     }
 
-    public function getTournament( $tournament_id){
+    public function getTournament($tournament_id)
+    {
         $tournamentId = $tournament_id;
         return Tournament::where('id', $tournamentId)->get()->first()->toJson();
     }
-
 }
-

@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers\Api;
+
 use App\Score\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class ScoreController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class ScoreController extends Controller
      */
     public function __construct()
     {
-        $this->api = new Api;
+        $this->api = new Api();
 
 //        $this->middleware('auth');
     }
@@ -23,7 +26,8 @@ class ScoreController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function getTournaments(Request $request){
+    public function getTournaments(Request $request)
+    {
 //        return $scoreApi->
         return $this->api->getTournaments($request);
 
@@ -32,12 +36,13 @@ class ScoreController extends Controller
 //       return $cup_number;
     }
 
-    public function getTournament(Request $request){
+    public function getTournament(Request $request)
+    {
         return $this->api->getTournament($request->tournament_id);
     }
 
-    public function postTournament(Request $request){
+    public function postTournament(Request $request)
+    {
         return $this->api->postTournament($request);
     }
-
 }

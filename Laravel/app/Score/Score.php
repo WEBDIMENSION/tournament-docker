@@ -20,17 +20,17 @@ class Score
     public function getCups($userId)
     {
 //        echo  Cup::where('id',$userId)->get()->toJson();
-        return  Cup::where('user_id',$userId)->get();
+        return Cup::where('user_id', $userId)->get();
 
 //        return $this->hasMany('\App\Player','id','player_a_id');
     }
 
     public function getAllCups($json = false)
     {
-        if($json){
-            return  Cup::get()->toJson();
-        }else{
-            return  Cup::get();
+        if ($json) {
+            return Cup::get()->toJson();
+        } else {
+            return Cup::get();
         }
 //        echo  Cup::where('id',$userId)->get()->toJson();
 
@@ -44,10 +44,8 @@ class Score
     public function getCup($cup_number)
     {
 //        echo  Cup::where('id',$userId)->get()->toJson();
-        return  Cup::where('cup_number',$cup_number)->get()->first();
+        return Cup::where('cup_number', $cup_number)->get()->first();
 
 //        return $this->hasMany('\App\Player','id','player_a_id');
     }
-
 }
-

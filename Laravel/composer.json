@@ -22,7 +22,8 @@
         "laravel/dusk": "^5.6",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^7.5",
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "config": {
         "optimize-autoloader": true,
@@ -60,6 +61,15 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "phpcs": [
+            "./vendor/bin/phpcs --standard=phpcs.xml ./"
+        ],
+        "phpcs-xml": [
+            "./vendor/bin/phpcs --standard=phpcs.xml --report=xml --report-file=./phpcs-repo/report.xml ./"
+        ],
+        "phpcs-csv": [
+            "./vendor/bin/phpcs --standard=phpcs.xml --report=csv --report-file=./phpcs-repo/report.csv ./"
         ]
     }
 }
