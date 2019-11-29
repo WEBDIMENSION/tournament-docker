@@ -1,6 +1,4 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/laravel.vue.js": "/js/laravel.vue.js",
+    "/main.js": "/main.js",
     "/js/jquery/test_vanilla.js": "/js/jquery/test_vanilla.js"
 }

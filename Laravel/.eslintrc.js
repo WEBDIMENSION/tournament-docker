@@ -9,7 +9,8 @@ module.exports = {
     },
     env: {
         'browser': true,
-        'jquery' : true
+        'jquery' : true,
+        "mocha": true
     },
     extends: [
         "prettier",
@@ -30,7 +31,8 @@ module.exports = {
     rules: {
         // allow async-await
         'generator-star-spacing': 'off',
-        "indent": ["error", 2]
+        "indent": ["error", 2],
+        "object-shorthand": [0,"always"]
 
     }
 }

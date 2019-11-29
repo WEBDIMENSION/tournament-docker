@@ -34,6 +34,7 @@ Vue.component('display-event-component', require('./components/DisplayEventConpo
 Vue.component('display-tournament-component', require('./components/DisplayTournamentConponent.vue').default)
 Vue.component('display-tournament2-component', require('./components/DisplayTournament2Conponent.vue').default)
 Vue.component('score-cups-component', require('./components/ScoreCupsConponent.vue').default)
+Vue.component('counter', require('./components/Counter.vue').default)
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

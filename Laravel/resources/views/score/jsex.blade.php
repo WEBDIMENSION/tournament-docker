@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <Counter
+      count="1"
+    ></Counter>
     <main class="p-3">
         <!-- 4個分のタブ -->
         <ul class="nav nav-tabs">
