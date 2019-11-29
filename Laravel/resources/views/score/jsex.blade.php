@@ -35,11 +35,11 @@
         </div>
     </main>
     <div class="container">
-    <js-ex-component test="test"></js-ex-component>
+        <js-ex-component test="test"></js-ex-component>
     </div>
     <div id="app" class="p-3">
         <p>Vanilla.js, jQuery のテスト</p>
-        <button onclick="test_vanilla()">test_vanilla</button>
+        <button onclick="testVanilla()">test_vanilla</button>
         <button id="btn">test_jquery</button>
     </div>
 

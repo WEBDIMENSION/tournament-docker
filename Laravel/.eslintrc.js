@@ -1,41 +1,36 @@
 module.exports = {
     root: true,
+    globals: {
+        '_': true, // lodash
+        'Enumerable': true // linq
+    },
     parserOptions: {
-        parser: 'babel-eslint',
+        parser: 'babel-eslint'
     },
     env: {
-        browser: true,
+        'browser': true,
+        'jquery' : true
     },
     extends: [
-        'standard',
-        'plugin:vue/recommended',
-        'plugin:prettier/recommended',
-        'prettier/vue',
+        "prettier",
+        'standard', // https://github.com/standard/standard/blob/master/docs/RULES-en.md,
+        // 'eslint:recommended',
+        // "plugin:vue-i18n/recommended",
+        // 'plugin:vue/essential'
+        // "plugin:vue/strongly-recommended"
+        'plugin:vue/recommended'
+
     ],
+    // required to lint *.vue files
     plugins: [
         'vue',
-        'prettier',
+        "prettier"
     ],
+    // add your custom rules here
     rules: {
-        // ESLintが使用する整形ルールのうち、自分がoffにしたいルールなどを指定する
-        // 'vue/no-v-html': 'off',
-        'vue/prop-name-casing': 'off',
-        'no-console': 'off',
-        'no-unused-vars': 'off',
-        'camelcase': 'off',
-        // Prettierのルール
-        "prettier/prettier": [
-            "error",
-            {
-                printWidth: 120,
-                tabWidth: 2,
-                useTabs: false,
-                singleQuote: true,
-                trailingComma: 'all',
-                bracketSpacing: true,
-                arrowParens: 'avoid',
-                semi: false,
-            },
-        ]
+        // allow async-await
+        'generator-star-spacing': 'off',
+        "indent": ["error", 2]
+
     }
 }

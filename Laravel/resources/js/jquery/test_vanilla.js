@@ -1,3 +1,3 @@
-function test_vanilla() {
-    alert("Hello Vanilla Javascript!!");
+function testVanilla () { // eslint-disable-line
+  alert('Hello Vanilla Javascript!!')
 }

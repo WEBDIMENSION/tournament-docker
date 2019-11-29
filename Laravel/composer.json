@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.2.8",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
@@ -18,12 +18,14 @@
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.4",
         "laravel/dusk": "^5.6",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.5",
-        "squizlabs/php_codesniffer": "^3.5"
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpmd/phpmd" : "@stable"
     },
     "config": {
         "optimize-autoloader": true,
@@ -70,6 +72,9 @@
         ],
         "phpcs-csv": [
             "./vendor/bin/phpcs --standard=phpcs.xml --report=csv --report-file=./phpcs-repo/report.csv ./"
+        ],
+        "phpcbf": [
+            "./vendor/bin/phpcbf  ."
         ]
     }
 }

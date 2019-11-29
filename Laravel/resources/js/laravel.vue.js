@@ -3,13 +3,14 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+/* eslint-disable */
 
 // require('./bootstrap')
 
 window.Vue = require('vue')
 Vue.config.silent = true
 window.vuetify = require('vuetify')
-window.axios = require('axios')
+// window.axios = require('axios')
 window.io = require('socket.io-client')
 // window.ioc = require('socket.io')
 /**
@@ -38,15 +39,8 @@ Vue.component('score-cups-component', require('./components/ScoreCupsConponent.v
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
-  el: '#app',
+    el: '#app'
 })
 
-// const app2 = new Vue({
-//   el: '#sample'
-// })
-//
-// const score = new Vue({
-//   el: '#weather'
-// })
+/* eslint-enable */

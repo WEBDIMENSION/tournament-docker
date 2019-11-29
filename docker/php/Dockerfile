@@ -26,7 +26,7 @@ RUN apt-get install -y zlib1g-dev \
     && docker-php-ext-install zip
 ##Chrome Driver RUN apt-get install -y libnss3
 #RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-#RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+#RUN echo "deb http://dl.googlttcom/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 #RUN apt-get update && apt-get install -y google-chrome-stable
 # GD
 RUN apt-get update && apt-get install -y \
@@ -39,3 +39,4 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+

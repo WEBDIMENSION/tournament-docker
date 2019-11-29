@@ -17,7 +17,6 @@ class AddColumnPlayerNameTournamentsTable extends Migration
             //
             $table->string('player_a_name', 60)->nullable()->after('player_a_id');
             $table->string('player_b_name', 60)->nullable()->after('player_b_id');
-
         });
     }
 
@@ -32,7 +31,6 @@ class AddColumnPlayerNameTournamentsTable extends Migration
             //
             $table->dropColumn('player_a_name');
             $table->dropColumn('player_b_name');
-
         });
     }
 }

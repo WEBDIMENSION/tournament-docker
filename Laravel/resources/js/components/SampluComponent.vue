@@ -1,14 +1,17 @@
 <template>
-    <p>Vue.js : {{ message }}</p>
+  <p>Vue.js : {{ message }}</p>
 </template>
 
 <script>
-    export default {
-        props: {
-            message: String,
-        },
-        mounted() {
-            console.log('Sample mounted.')
-        },
+export default {
+  props: {
+    message: {
+      type: String,
+      default: ''
     }
+  },
+  mounted () {
+    console.log('Sample mounted.')
+  }
+}
 </script>

@@ -1,5 +1,5 @@
 $(function () {
-    $('#btn').on('click', function () {
-        alert("Hello jQuery!!");
-    });
-});
+  $('#btn').on('click', function () {
+    alert('Hello jQuery!!')
+  })
+})
