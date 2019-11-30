@@ -38,7 +38,7 @@ class Score
     }
 
     /**
-     * @param $userId
+     * @param $cup_number
      * @return mixed
      */
     public function getCup($cup_number)

@@ -12,6 +12,9 @@ class Cup extends Model
         return $this->hasMany('\App\Event');
     }
 
+    /**
+     * @return mixed
+     */
     public function eventsCount()
     {
         return $events_count = Event::where('cup_id', $this->id)->count();
