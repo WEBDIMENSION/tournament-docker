@@ -28,7 +28,7 @@ class Event extends Model
     public function getCardsInRound($event_id, $round)
     {
         $cards = Tournament::where('event_id', $event_id)->where('round', $round)->orderBy('id', 'ASC')->get();
-//  var_dump($cards);
+        //  var_dump($cards);
         return $cards;
     }
 

@@ -49,10 +49,10 @@ class HomeController extends Controller
         $redis = Redis::connection();
         $emitter = new \SocketIO\Emitter($redis);
         $winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();
-        $data = array(
-            'winner' => array($winner->player_name, $winner->partner_name),
+        $data = [
+            'winner' => [$winner->player_name, $winner->partner_name],
             'score' => $score
-        );
+        ];
         $json_data = json_encode($data);
         $emitter->emit('LaravelGetScoreMess', $json_data);
         return redirect('/home');

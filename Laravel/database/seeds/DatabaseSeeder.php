@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now()
         ]);
         factory(App\User::class, 10)->create();
-       // Cups Table
+        // Cups Table
         DB::table("cups")->insert([
             'user_id' => '1',
             'cup_name' => 'Cup_001',

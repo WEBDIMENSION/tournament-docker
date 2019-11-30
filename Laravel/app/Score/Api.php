@@ -65,7 +65,7 @@ class Api
         $redis = Redis::connection();
         $emitter = new \SocketIO\Emitter($redis);
         $winner = Player::where('id', $winner)->get(['player_name', 'partner_name'])->first();
-        $data = array(
+        $data = [
             'cupId' => $cupId,
             'cupName' => $cupName,
             'eventId' => $eventId,
@@ -73,12 +73,12 @@ class Api
             'roundNumber' => $roundNumber,
             'cardNumber' => $cardNumber,
             'tournamentId' => $tournamentId,
-            'winner' => array($winner->player_name, $winner->partner_name),
+            'winner' => [$winner->player_name, $winner->partner_name],
             'score' => $score
-        );
+        ];
         $json_data = json_encode($data);
         $emitter->emit('LaravelGetScoreMess', $json_data);
-        return $result_json = json_encode(array('result' => true, 'code' => '000'));
+        return $result_json = json_encode(['result' => true, 'code' => '000']);
     }
 
     public function getTournament($tournament_id)

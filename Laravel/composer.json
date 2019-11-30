@@ -75,6 +75,12 @@
         ],
         "phpcbf": [
             "./vendor/bin/phpcbf  ."
+        ],
+        "fix-diff": [
+            "./vendor/bin/php-cs-fixer fix  --dry-run --diff"
+        ],
+        "fix": [
+            "./vendor/bin/php-cs-fixer fix"
         ]
     }
 }

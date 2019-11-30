@@ -20,4 +20,3 @@ Route::get('score/u/{winner}/{score}', 'Score\ScoreController@scoreEdit');
 Route::middleware('auth:api')->get('score/get_tournaments/{event_number}', 'Api\ScoreController@getTournaments');
 Route::middleware('auth:api')->get('score/get_tournament/{tournament_id}', 'Api\ScoreController@getTournament');
 Route::middleware('auth:api')->post('score/post_tournament', 'Api\ScoreController@postTournament');
-
