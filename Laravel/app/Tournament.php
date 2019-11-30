@@ -3,12 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Events;
-use App\Player;
 
 class Tournament extends Model
 {
-    //
 //    public function makeTournament($event_id)
 //    {
 //        $players = Player::where('event_id', $event_id)->get();
@@ -16,6 +13,10 @@ class Tournament extends Model
 //           echo $player->player_name;
 //        }
 //    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function players()
     {
         return $this->hasMany('\App\Player', 'id', 'player_a_id');
