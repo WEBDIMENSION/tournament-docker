@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tournament extends Mode
+class Tournament extends Model
 {
 //    public function makeTournament($event_id)
-//    {l
+//    {
 //        $players = Player::where('event_id', $event_id)->get();
 //        foreach ($players as $player) {
 //           echo $player->player_name;
