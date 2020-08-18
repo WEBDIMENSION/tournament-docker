@@ -7,6 +7,7 @@ services:
       - ../Laravel:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/php.ini
       - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - /opt:/opt
     external_links:
       - smtp
 #      - mysql5.7:mysql5.7
@@ -53,6 +54,7 @@ services:
       - ${REDIS_PORT}:6379
     volumes:
       - ./redis/data:/data
+
   node:
     image: node:10
     container_name: tournament_node
@@ -64,29 +66,15 @@ services:
       CERTS_DIR_PATH: /certs/
       REDIS_HOST: ${REDIS_HOST}
       REDIS_PORT: ${REDIS_PORT}
+      MIX_NODE_PORT: ${MIX_NODE_PORT}
     ports:
       - ${MIX_NODE_PORT}:3000
     command: bash -c  "npm install && npm start"
     depends_on:
       - mysql
-      - redis
-    links:
-      - redis
-  selenium-hub:
-    image: selenium/hub:3.141.59-vanadium
-    container_name: selenium-hub
-    ports:
-      - 4444:4444
-  chrome:
-    image: selenium/node-chrome:3.141.59-vanadium
-    container_name: selenium-chrome
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - selenium-hub
-    environment:
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
+        #  - redis
+        #links:
+        #  - redis
 networks:
   default:
     external:

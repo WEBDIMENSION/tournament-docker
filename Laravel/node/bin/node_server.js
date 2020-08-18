@@ -1,5 +1,5 @@
 const app = require('express')();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.MIX_NODE_PORT;
 const http = require('https');
 const redis = require('socket.io-redis');
 const fs = require('fs');
