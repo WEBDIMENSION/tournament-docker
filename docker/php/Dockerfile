@@ -19,6 +19,8 @@ RUN docker-php-source extract
 RUN git clone -b 4.1.1 --depth 1 https://github.com/phpredis/phpredis.git /usr/src/php/ext/redis && \
     docker-php-ext-install redis
 # xdebug
+#RUN pecl install xdebug-2.9.8 \
+#  && docker-php-ext-enable xdebug
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
 # php-zip
